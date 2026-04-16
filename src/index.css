@@ -1,0 +1,56 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
+  --color-navy: #002349;
+  --color-navy-light: #003366;
+  --color-gold: #C5A059;
+  --color-gold-light: #E5D5B7;
+  --color-gold-dark: #A88644;
+  --color-off-white: #F8F9FA;
+  --color-text-gray: #4A5568;
+}
+
+body {
+  font-family: var(--font-sans);
+  background: linear-gradient(135deg, #F8F9FA 0%, #EDF2F7 100%);
+  color: var(--color-navy);
+  -webkit-font-smoothing: antialiased;
+  min-height: 100vh;
+}
+
+/* Smooth scrolling for anchor links */
+html {
+  scroll-behavior: smooth;
+}
+
+@layer components {
+  .btn {
+    @apply px-6 py-3 rounded-lg font-semibold text-sm uppercase tracking-wide transition-all duration-200 inline-flex justify-center items-center text-center;
+  }
+  .btn-gold {
+    @apply bg-gold text-navy hover:bg-gold-light;
+  }
+  .btn-outline {
+    @apply bg-transparent border border-gold text-gold hover:bg-gold hover:text-navy;
+  }
+  .section-title {
+    @apply text-lg font-bold uppercase tracking-[1px] text-navy flex items-center gap-2 mb-4 mt-6;
+  }
+  .section-title::after {
+    content: '';
+    @apply h-[2px] flex-grow bg-gold-light;
+  }
+  .hall-card {
+    @apply bg-white rounded-xl border border-[#E2E8F0] overflow-hidden shadow-[0_4px_6px_rgba(0,0,0,0.02)] transition-shadow hover:shadow-[0_10px_15px_rgba(0,0,0,0.05)];
+  }
+  .booking-card {
+    @apply bg-white rounded-2xl border border-gold-light p-6 md:p-8 shadow-[0_10px_25px_rgba(0,0,0,0.05)];
+  }
+  .form-label {
+    @apply text-[11px] font-bold text-navy uppercase mb-1.5 block;
+  }
+  .form-input {
+    @apply w-full p-2.5 border border-[#E2E8F0] rounded-md mb-3 text-[13px] focus:outline-none focus:border-gold focus:ring-1 focus:ring-gold transition-colors bg-white;
+  }
+}
