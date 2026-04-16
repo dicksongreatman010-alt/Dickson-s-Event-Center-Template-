@@ -24,16 +24,16 @@ export default function Contact() {
           </motion.p>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+        <div className="max-w-2xl mx-auto">
           
           {/* Contact Info */}
           <motion.div 
-            initial={{ opacity: 0, x: -30 }}
-            animate={{ opacity: 1, x: 0 }}
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2 }}
-            className="bg-white p-8 md:p-10 rounded-2xl border border-[#E2E8F0] shadow-[0_4px_6px_rgba(0,0,0,0.02)] h-full"
+            className="bg-white p-8 md:p-10 rounded-2xl border border-[#E2E8F0] shadow-[0_4px_6px_rgba(0,0,0,0.02)]"
           >
-            <h2 className="text-2xl font-bold text-navy mb-8">Contact Information</h2>
+            <h2 className="text-2xl font-bold text-navy mb-8 text-center">Contact Information</h2>
             
             <div className="space-y-8">
               <div className="flex items-start gap-4">
@@ -82,26 +82,6 @@ export default function Contact() {
                 </div>
               </div>
             </div>
-          </motion.div>
-
-          {/* Map */}
-          <motion.div 
-            initial={{ opacity: 0, x: 30 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ delay: 0.3 }}
-            className="bg-white p-2 rounded-2xl border border-[#E2E8F0] shadow-[0_4px_6px_rgba(0,0,0,0.02)] h-[400px] lg:h-auto overflow-hidden"
-          >
-            {/* Using a dummy map embed (Google Maps iframe) */}
-            <iframe 
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1m2!1m3!1d193595.15830869428!2d-74.119763973046!3d40.69766374874431!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c24fa5d33f083b%3A0xc80b8f06e177fe62!2sNew%20York%2C%20NY%2C%20USA!5e0!3m2!1sen!2s!4v1690000000000!5m2!1sen!2s" 
-              width="100%" 
-              height="100%" 
-              style={{ border: 0, borderRadius: '1rem' }} 
-              allowFullScreen={true} 
-              loading="lazy" 
-              referrerPolicy="no-referrer-when-downgrade"
-              title="Eko Grandeur Location"
-            ></iframe>
           </motion.div>
 
         </div>
