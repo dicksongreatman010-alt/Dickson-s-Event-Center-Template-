@@ -14,6 +14,7 @@ export default function Booking() {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState('');
   const [bookedDates, setBookedDates] = useState<Date[]>([]);
+  const [showConfirmModal, setShowConfirmModal] = useState(false);
   const [formData, setFormData] = useState({
     name: '',
     phone: '',
@@ -94,6 +95,12 @@ export default function Booking() {
       }
     }
     
+    // Validation passed, show confirmation modal
+    setShowConfirmModal(true);
+  };
+
+  const processSubmission = async () => {
+    setShowConfirmModal(false);
     setIsLoading(true);
     
     try {
@@ -387,6 +394,90 @@ export default function Booking() {
         </motion.div>
 
       </div>
+
+      {/* Confirmation Modal */}
+      {showConfirmModal && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-navy/60 backdrop-blur-sm">
+          <motion.div 
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            className="bg-white rounded-2xl shadow-xl w-full max-w-lg overflow-hidden flex flex-col max-h-[90vh]"
+          >
+            <div className="p-6 border-b border-gray-100 bg-gray-50 flex justify-between items-center">
+              <h3 className="text-xl font-bold text-navy">Confirm Booking Details</h3>
+              <button 
+                onClick={() => setShowConfirmModal(false)}
+                className="text-gray-400 hover:text-gray-600 transition-colors"
+                aria-label="Close"
+              >
+                ✕
+              </button>
+            </div>
+            
+            <div className="p-6 overflow-y-auto">
+              <p className="text-sm text-gray-600 mb-6">
+                Please review your event details below. Make sure everything is correct before submitting your inquiry.
+              </p>
+              
+              <div className="space-y-4">
+                <div className="flex flex-col sm:flex-row sm:justify-between py-2 border-b border-gray-100">
+                  <span className="text-gray-500 text-sm font-medium">Guest Name</span>
+                  <span className="font-semibold text-navy">{formData.name}</span>
+                </div>
+                <div className="flex flex-col sm:flex-row sm:justify-between py-2 border-b border-gray-100">
+                  <span className="text-gray-500 text-sm font-medium">Email</span>
+                  <span className="font-semibold text-navy">{formData.email}</span>
+                </div>
+                <div className="flex flex-col sm:flex-row sm:justify-between py-2 border-b border-gray-100">
+                  <span className="text-gray-500 text-sm font-medium">Phone Number</span>
+                  <span className="font-semibold text-navy">{formData.phone}</span>
+                </div>
+                <div className="flex flex-col sm:flex-row sm:justify-between py-2 border-b border-gray-100">
+                  <span className="text-gray-500 text-sm font-medium">Event Type</span>
+                  <span className="font-semibold text-navy">{formData.eventType}</span>
+                </div>
+                <div className="flex flex-col sm:flex-row sm:justify-between py-2 border-b border-gray-100">
+                  <span className="text-gray-500 text-sm font-medium">Expected Guests</span>
+                  <span className="font-semibold text-navy">{formData.guests}</span>
+                </div>
+                <div className="flex flex-col sm:flex-row sm:justify-between py-2 border-b border-gray-100">
+                  <span className="text-gray-500 text-sm font-medium">Event Date</span>
+                  <span className="font-semibold text-navy">
+                    {formData.date ? format(parseISO(formData.date), 'MMMM do, yyyy') : ''}
+                  </span>
+                </div>
+                <div className="flex flex-col sm:flex-row sm:justify-between py-2 border-b border-gray-100">
+                  <span className="text-gray-500 text-sm font-medium">Preferred Hall</span>
+                  <span className="font-semibold text-navy">
+                    {halls.find(h => h.id === formData.hall)?.name || formData.hall}
+                  </span>
+                </div>
+                {formData.message && (
+                  <div className="flex flex-col py-2 border-b border-gray-100">
+                    <span className="text-gray-500 text-sm font-medium mb-1">Additional Message</span>
+                    <span className="text-sm text-navy bg-gray-50 p-2 rounded">{formData.message}</span>
+                  </div>
+                )}
+              </div>
+            </div>
+            
+            <div className="p-6 bg-gray-50 flex flex-col sm:flex-row gap-3 justify-end items-center border-t border-gray-100">
+              <button 
+                onClick={() => setShowConfirmModal(false)}
+                className="w-full sm:w-auto px-5 py-2.5 text-sm font-medium text-gray-700 bg-white border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors"
+              >
+                Go Back & Edit
+              </button>
+              <button 
+                onClick={processSubmission}
+                className="w-full sm:w-auto px-5 py-2.5 text-sm font-bold text-white bg-navy hover:bg-navy-light rounded-lg transition-colors flex items-center justify-center gap-2"
+              >
+                {checkoutParam ? 'Confirm & Proceed to Payment' : 'Confirm Application'}
+              </button>
+            </div>
+          </motion.div>
+        </div>
+      )}
     </div>
   );
 }

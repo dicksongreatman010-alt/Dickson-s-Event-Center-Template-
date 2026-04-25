@@ -6,6 +6,49 @@ export interface Booking {
   hall_id: string;
   event_date: string;
   status: string;
+  guest_name?: string;
+  guest_email?: string;
+  guest_phone?: string;
+  event_type?: string;
+  guests_count?: number;
+  message?: string;
+  created_at?: string;
+}
+
+export async function getAllBookings(): Promise<Booking[]> {
+  try {
+    const { data, error } = await supabase
+      .from('bookings')
+      .select('*')
+      .order('created_at', { ascending: false });
+      
+    if (error) {
+      console.error('Error fetching all bookings:', error);
+      return [];
+    }
+    return data || [];
+  } catch (error) {
+    console.error('Unexpected error fetching all bookings:', error);
+    return [];
+  }
+}
+
+export async function updateBookingStatus(id: string, status: string): Promise<boolean> {
+  try {
+    const { error } = await supabase
+      .from('bookings')
+      .update({ status })
+      .eq('id', id);
+      
+    if (error) {
+      console.error('Error updating booking status:', error);
+      return false;
+    }
+    return true;
+  } catch (error) {
+    console.error('Unexpected error updating booking status:', error);
+    return false;
+  }
 }
 
 export async function getBookedDatesForHall(hallId: string): Promise<Date[]> {

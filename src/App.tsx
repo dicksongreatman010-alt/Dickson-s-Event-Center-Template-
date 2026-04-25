@@ -12,6 +12,7 @@ import BookingSuccess from './pages/BookingSuccess';
 import Availability from './pages/Availability';
 import Gallery from './pages/Gallery';
 import Contact from './pages/Contact';
+import Admin from './pages/Admin';
 
 export default function App() {
   return (
@@ -25,6 +26,7 @@ export default function App() {
           <Route path="/booking-success" element={<BookingSuccess />} />
           <Route path="/gallery" element={<Gallery />} />
           <Route path="/contact" element={<Contact />} />
+          <Route path="/admin" element={<Admin />} />
         </Routes>
       </Layout>
     </Router>
