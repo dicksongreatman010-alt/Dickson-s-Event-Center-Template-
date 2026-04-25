@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { DayPicker } from 'react-day-picker';
+import { DayPicker, DayButtonProps } from 'react-day-picker';
 import { format } from 'date-fns';
 import { Calendar as CalendarIcon } from 'lucide-react';
 import 'react-day-picker/dist/style.css';
@@ -73,8 +73,7 @@ export function DatePicker({ selected, onSelect, disabledDates = [], minDate, cl
                 color: #002349;
               }
               .rdp-day_disabled {
-                text-decoration: line-through;
-                opacity: 0.3;
+                opacity: 0.5;
               }
             `}
           </style>
@@ -88,7 +87,31 @@ export function DatePicker({ selected, onSelect, disabledDates = [], minDate, cl
             disabled={disabledDays}
             modifiers={{ booked: disabledDates }}
             modifiersStyles={{
-              booked: { textDecoration: 'line-through', opacity: 0.3 }
+              booked: { 
+                textDecoration: 'line-through', 
+                backgroundColor: '#fee2e2', /* subtle red background */
+                color: '#ef4444', /* distinct red text */
+                opacity: 0.8
+              }
+            }}
+            components={{
+              DayButton: (props: DayButtonProps) => {
+                const { day, modifiers, className, ...buttonProps } = props;
+                const isBooked = modifiers.booked;
+                const isDisabled = modifiers.disabled;
+                let title = undefined;
+                if (isBooked) {
+                  title = "This date is already booked.";
+                } else if (isDisabled) {
+                  title = "This date is in the past or unavailable.";
+                }
+                
+                return (
+                  <div title={title} className="w-full h-full flex items-center justify-center">
+                    <button {...buttonProps} className={className} />
+                  </div>
+                );
+              }
             }}
             showOutsideDays
           />
