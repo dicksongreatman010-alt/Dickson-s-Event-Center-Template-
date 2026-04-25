@@ -57,7 +57,7 @@ export async function getBookedDatesForHall(hallId: string): Promise<Date[]> {
       .from('bookings')
       .select('event_date')
       .eq('hall_id', hallId)
-      .in('status', ['confirmed', 'deposit_paid', 'pending']);
+      .in('status', ['confirmed', 'deposit_paid']);
       
     if (error) {
       console.error('Error fetching booked dates from Supabase:', error);
