@@ -4,7 +4,7 @@ import { motion } from 'motion/react';
 import { CheckCircle2, MessageCircle } from 'lucide-react';
 import { halls } from '../data/content';
 import { DatePicker } from '../components/DatePicker';
-import { hallAvailability } from '../data/availability';
+import { getBookedDatesForHall, createBookingInquiry } from '../services/bookingService';
 import { format, parseISO } from 'date-fns';
 
 export default function Booking() {
@@ -13,6 +13,7 @@ export default function Booking() {
   const [dateError, setDateError] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState('');
+  const [bookedDates, setBookedDates] = useState<Date[]>([]);
   const [formData, setFormData] = useState({
     name: '',
     phone: '',
@@ -23,6 +24,21 @@ export default function Booking() {
     hall: '',
     message: ''
   });
+
+  // Fetch booked dates whenever a hall is selected
+  useEffect(() => {
+    async function loadAvailability() {
+      if (formData.hall) {
+        setIsLoading(true);
+        const dates = await getBookedDatesForHall(formData.hall);
+        setBookedDates(dates);
+        setIsLoading(false);
+      } else {
+        setBookedDates([]);
+      }
+    }
+    loadAvailability();
+  }, [formData.hall]);
 
   // Pre-select hall if passed in URL
   useEffect(() => {
@@ -63,7 +79,7 @@ export default function Booking() {
     }
 
     if (formData.date && formData.hall) {
-      const isBooked = hallAvailability[formData.hall]?.some(
+      const isBooked = bookedDates.some(
         d => format(d, 'yyyy-MM-dd') === formData.date
       );
       if (isBooked) {
@@ -76,7 +92,15 @@ export default function Booking() {
     
     try {
       const selectedHallName = halls.find(h => h.id === formData.hall)?.name || formData.hall;
+
+      // 1. Save to Supabase
+      try {
+        await createBookingInquiry(formData);
+      } catch (err) {
+        console.warn('Could not save booking to Supabase, perhaps the "bookings" table does not exist or permissions are incorrect. Continuing with email notification...', err);
+      }
       
+      // 2. Send email notification via backend API
       const response = await fetch('/api/inquiry', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -86,7 +110,7 @@ export default function Booking() {
       const data = await response.json();
       
       if (!response.ok) {
-        throw new Error(data.error || 'Failed to send inquiry');
+        throw new Error(data.error || 'Failed to send inquiry email');
       }
       
       setIsSubmitted(true);
@@ -292,7 +316,7 @@ export default function Booking() {
                     setDateError('');
                   }}
                   minDate={new Date()}
-                  disabledDates={formData.hall ? hallAvailability[formData.hall] : []}
+                  disabledDates={bookedDates}
                   hasError={!!dateError}
                 />
                 {!formData.hall && !formData.date && <p className="text-[#a0aec0] text-xs mt-1">Select a hall first to see available dates.</p>}
