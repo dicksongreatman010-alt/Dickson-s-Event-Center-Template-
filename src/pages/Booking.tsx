@@ -40,14 +40,20 @@ export default function Booking() {
     loadAvailability();
   }, [formData.hall]);
 
-  // Pre-select hall if passed in URL
+  // Pre-select hall and date if passed in URL
+  const params = new URLSearchParams(location.search);
+  const checkoutParam = params.get('checkout') === 'true';
+
   useEffect(() => {
-    const params = new URLSearchParams(location.search);
     const hallParam = params.get('hall');
-    if (hallParam) {
-      setFormData(prev => ({ ...prev, hall: hallParam }));
-    }
-  }, [location]);
+    const dateParam = params.get('date');
+    
+    setFormData(prev => ({ 
+      ...prev, 
+      ...(hallParam && { hall: hallParam }),
+      ...(dateParam && { date: dateParam })
+    }));
+  }, [location.search]); // Depend on location.search instead of location
 
   const today = new Date().toISOString().split('T')[0];
 
@@ -113,7 +119,11 @@ export default function Booking() {
         throw new Error(data.error || 'Failed to send inquiry email');
       }
       
-      setIsSubmitted(true);
+      if (checkoutParam) {
+        await handleDeposit();
+      } else {
+        setIsSubmitted(true);
+      }
     } catch (err: any) {
       console.error(err);
       setError(err.message || 'Something went wrong. Please try again.');
@@ -362,9 +372,13 @@ export default function Booking() {
             <button 
               type="submit"
               disabled={isLoading}
-              className="btn btn-gold w-full mt-2 disabled:opacity-70 disabled:cursor-not-allowed"
+              className="btn btn-gold w-full mt-2 disabled:opacity-70 disabled:cursor-not-allowed text-lg font-semibold h-12"
             >
-              {isLoading ? 'Sending Inquiry...' : 'Submit Inquiry'}
+              {isLoading 
+                ? 'Processing...' 
+                : checkoutParam 
+                  ? 'Proceed to Secure Payment' 
+                  : 'Submit Inquiry'}
             </button>
             <div className="mt-6 pt-5 border-t border-[#EEE] text-[12px] text-text-gray text-center">
               <p>We typically respond within 2 hours</p>

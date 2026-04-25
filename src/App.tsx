@@ -9,6 +9,7 @@ import Home from './pages/Home';
 import Halls from './pages/Halls';
 import Booking from './pages/Booking';
 import BookingSuccess from './pages/BookingSuccess';
+import Availability from './pages/Availability';
 import Gallery from './pages/Gallery';
 import Contact from './pages/Contact';
 
@@ -19,6 +20,7 @@ export default function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/halls" element={<Halls />} />
+          <Route path="/availability" element={<Availability />} />
           <Route path="/booking" element={<Booking />} />
           <Route path="/booking-success" element={<BookingSuccess />} />
           <Route path="/gallery" element={<Gallery />} />
