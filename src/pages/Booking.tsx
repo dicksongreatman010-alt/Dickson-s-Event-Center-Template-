@@ -3,11 +3,16 @@ import { useLocation } from 'react-router-dom';
 import { motion } from 'motion/react';
 import { CheckCircle2, MessageCircle } from 'lucide-react';
 import { halls } from '../data/content';
+import { DatePicker } from '../components/DatePicker';
+import { hallAvailability } from '../data/availability';
+import { format, parseISO } from 'date-fns';
 
 export default function Booking() {
   const location = useLocation();
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [dateError, setDateError] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState('');
   const [formData, setFormData] = useState({
     name: '',
     phone: '',
@@ -43,19 +48,77 @@ export default function Booking() {
     }
   };
 
-  const handleSubmit = (e: FormEvent) => {
+  const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
+    setError('');
     
+    if (!formData.date) {
+      setDateError('Please select a date for your event.');
+      return;
+    }
+
     if (formData.date && formData.date < today) {
       setDateError('Please select a future date for your event.');
       return;
     }
+
+    if (formData.date && formData.hall) {
+      const isBooked = hallAvailability[formData.hall]?.some(
+        d => format(d, 'yyyy-MM-dd') === formData.date
+      );
+      if (isBooked) {
+        setDateError('This date is already booked for the selected hall.');
+        return;
+      }
+    }
     
-    // Simulate sending email (in a real app, this would be an API call)
-    console.log('Form submitted:', formData);
+    setIsLoading(true);
     
-    // Show success message
-    setIsSubmitted(true);
+    try {
+      const selectedHallName = halls.find(h => h.id === formData.hall)?.name || formData.hall;
+      
+      const response = await fetch('/api/inquiry', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ ...formData, hall: selectedHallName }),
+      });
+      
+      const data = await response.json();
+      
+      if (!response.ok) {
+        throw new Error(data.error || 'Failed to send inquiry');
+      }
+      
+      setIsSubmitted(true);
+    } catch (err: any) {
+      console.error(err);
+      setError(err.message || 'Something went wrong. Please try again.');
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  const handleDeposit = async () => {
+    setIsLoading(true);
+    try {
+      const selectedHallName = halls.find(h => h.id === formData.hall)?.name || formData.hall;
+      const response = await fetch('/api/checkout', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ name: formData.name, date: formData.date, hall: selectedHallName }),
+      });
+      
+      const data = await response.json();
+      if (data.url) {
+        window.location.href = data.url;
+      } else {
+        throw new Error('Failed to create checkout session');
+      }
+    } catch (err: any) {
+      console.error(err);
+      alert('Failed to initiate payment. Please try again later.');
+      setIsLoading(false);
+    }
   };
 
   if (isSubmitted) {
@@ -75,9 +138,16 @@ export default function Booking() {
           </div>
           <h2 className="text-2xl font-bold text-navy mb-4">Inquiry Sent!</h2>
           <p className="text-text-gray text-sm mb-8 leading-relaxed">
-            Thank you for choosing Eko Grandeur. We have received your booking inquiry and will get back to you shortly.
+            Thank you for choosing Eko Grandeur. We have sent a confirmation to your email. Our team will review your inquiry and get back to you shortly.
           </p>
           <div className="space-y-3">
+            <button 
+              onClick={handleDeposit}
+              disabled={isLoading}
+              className="btn bg-navy text-white hover:bg-navy-light w-full"
+            >
+              {isLoading ? 'Processing...' : 'Secure Date with $500 Deposit'}
+            </button>
             <a 
               href={waUrl}
               target="_blank"
@@ -215,16 +285,17 @@ export default function Booking() {
               </div>
               <div>
                 <label htmlFor="date" className="form-label">Event Date</label>
-                <input 
-                  type="date" 
-                  id="date" 
-                  name="date" 
-                  required
-                  min={today}
-                  value={formData.date}
-                  onChange={handleChange}
-                  className={`form-input ${dateError ? '!border-red-500 focus:!border-red-500 focus:!ring-red-500' : ''}`}
+                <DatePicker 
+                  selected={formData.date ? parseISO(formData.date) : undefined}
+                  onSelect={(d) => {
+                    setFormData(prev => ({ ...prev, date: d ? format(d, 'yyyy-MM-dd') : '' }));
+                    setDateError('');
+                  }}
+                  minDate={new Date()}
+                  disabledDates={formData.hall ? hallAvailability[formData.hall] : []}
+                  hasError={!!dateError}
                 />
+                {!formData.hall && !formData.date && <p className="text-[#a0aec0] text-xs mt-1">Select a hall first to see available dates.</p>}
                 {dateError && <p className="text-red-500 text-xs mt-1">{dateError}</p>}
               </div>
               <div>
@@ -258,11 +329,18 @@ export default function Booking() {
               ></textarea>
             </div>
 
+            {error && (
+              <div className="p-3 bg-red-50 border border-red-200 text-red-600 rounded-md text-sm">
+                {error}
+              </div>
+            )}
+
             <button 
               type="submit"
-              className="btn btn-gold w-full mt-2"
+              disabled={isLoading}
+              className="btn btn-gold w-full mt-2 disabled:opacity-70 disabled:cursor-not-allowed"
             >
-              Submit Inquiry
+              {isLoading ? 'Sending Inquiry...' : 'Submit Inquiry'}
             </button>
             <div className="mt-6 pt-5 border-t border-[#EEE] text-[12px] text-text-gray text-center">
               <p>We typically respond within 2 hours</p>
