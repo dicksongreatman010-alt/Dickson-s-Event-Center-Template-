@@ -6,6 +6,7 @@ import { halls } from '../data/content';
 import { DatePicker } from '../components/DatePicker';
 import { getBookedDatesForHall, createBookingInquiry } from '../services/bookingService';
 import { format, parseISO } from 'date-fns';
+import { supabase } from '../lib/supabase';
 
 export default function Booking() {
   const location = useLocation();
@@ -39,6 +40,24 @@ export default function Booking() {
       }
     }
     loadAvailability();
+
+    if (formData.hall) {
+      const subscription = supabase
+        .channel(`public:bookings:${formData.hall}`)
+        .on(
+          'postgres_changes',
+          { event: '*', schema: 'public', table: 'bookings', filter: `hall_id=eq.${formData.hall}` },
+          () => {
+            console.log('Real-time bookings update received for hall:', formData.hall);
+            loadAvailability();
+          }
+        )
+        .subscribe();
+
+      return () => {
+        supabase.removeChannel(subscription);
+      };
+    }
   }, [formData.hall]);
 
   // Pre-select hall and date if passed in URL
@@ -123,7 +142,8 @@ export default function Booking() {
       const data = await response.json();
       
       if (!response.ok) {
-        throw new Error(data.error || 'Failed to send inquiry email');
+        const errorMsg = typeof data.error === 'object' ? (data.error.message || JSON.stringify(data.error)) : data.error;
+        throw new Error(errorMsg || 'Failed to send inquiry email');
       }
       
       if (checkoutParam) {

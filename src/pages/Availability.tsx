@@ -6,6 +6,7 @@ import { DatePicker } from '../components/DatePicker';
 import { getBookedDatesForHall } from '../services/bookingService';
 import { format, parseISO } from 'date-fns';
 import { useNavigate } from 'react-router-dom';
+import { supabase } from '../lib/supabase';
 
 export default function Availability() {
   const navigate = useNavigate();
@@ -27,6 +28,24 @@ export default function Availability() {
       }
     }
     loadAvailability();
+
+    if (selectedHall) {
+      const subscription = supabase
+        .channel(`public:bookings:${selectedHall}`)
+        .on(
+          'postgres_changes',
+          { event: '*', schema: 'public', table: 'bookings', filter: `hall_id=eq.${selectedHall}` },
+          () => {
+            console.log('Real-time bookings update received for hall:', selectedHall);
+            loadAvailability();
+          }
+        )
+        .subscribe();
+
+      return () => {
+        supabase.removeChannel(subscription);
+      };
+    }
   }, [selectedHall]);
 
   // Handle direct payment checkout simulation
