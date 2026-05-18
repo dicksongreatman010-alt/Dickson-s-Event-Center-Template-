@@ -13,6 +13,7 @@ import Availability from './pages/Availability';
 import Gallery from './pages/Gallery';
 import Contact from './pages/Contact';
 import Admin from './pages/Admin';
+import Services from './pages/Services';
 
 export default function App() {
   return (
@@ -21,6 +22,7 @@ export default function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/halls" element={<Halls />} />
+          <Route path="/services" element={<Services />} />
           <Route path="/availability" element={<Availability />} />
           <Route path="/booking" element={<Booking />} />
           <Route path="/booking-success" element={<BookingSuccess />} />

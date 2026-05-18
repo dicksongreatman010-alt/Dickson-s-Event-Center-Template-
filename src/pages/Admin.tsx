@@ -11,6 +11,7 @@ export default function Admin() {
   const [authLoading, setAuthLoading] = useState(true);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [passCode, setPassCode] = useState('');
   const [authError, setAuthError] = useState('');
 
   const [bookings, setBookings] = useState<Booking[]>([]);
@@ -18,6 +19,9 @@ export default function Admin() {
   const [searchTerm, setSearchTerm] = useState('');
   const [filterStatus, setFilterStatus] = useState('all');
   const [updatingId, setUpdatingId] = useState<string | null>(null);
+
+  const [isLoginDisabled, setIsLoginDisabled] = useState(false);
+  const [isSignUpMode, setIsSignUpMode] = useState(false);
 
   useEffect(() => {
     supabase.auth.getSession().then(({ data: { session } }) => {
@@ -34,16 +38,36 @@ export default function Admin() {
     return () => subscription.unsubscribe();
   }, []);
 
-  const handleLogin = async (e: React.FormEvent) => {
+  const handleAuth = async (e: React.FormEvent) => {
     e.preventDefault();
     setAuthError('');
     setIsLoading(true);
-    const { error } = await supabase.auth.signInWithPassword({
-      email,
-      password,
-    });
-    if (error) {
-      setAuthError(error.message);
+    
+    if (isSignUpMode) {
+      if (passCode !== import.meta.env.VITE_ADMIN_PASSCODE) {
+        setAuthError('Invalid admin pass code.');
+        setIsLoading(false);
+        return;
+      }
+
+      const { data, error } = await supabase.auth.signUp({
+        email,
+        password,
+      });
+      if (error) {
+        setAuthError(error.message);
+      } else {
+        alert("Sign up successful! Please check your email for confirmation or log in.");
+        setIsSignUpMode(false);
+      }
+    } else {
+      const { error } = await supabase.auth.signInWithPassword({
+        email,
+        password,
+      });
+      if (error) {
+        setAuthError(error.message);
+      }
     }
     setIsLoading(false);
   };
@@ -153,10 +177,12 @@ export default function Admin() {
               <Lock className="w-8 h-8" />
             </div>
           </div>
-          <h2 className="text-2xl font-bold text-center text-navy mb-2">Admin Login</h2>
-          <p className="text-center text-gray-500 text-sm mb-8">Sign in to manage venue bookings</p>
+          <h2 className="text-2xl font-bold text-center text-navy mb-2">Admin {isSignUpMode ? 'Registration' : 'Login'}</h2>
+          <p className="text-center text-gray-500 text-sm mb-8">
+            {isSignUpMode ? 'Create a new admin account' : 'Sign in to manage venue bookings'}
+          </p>
           
-          <form onSubmit={handleLogin} className="space-y-4">
+          <form onSubmit={handleAuth} className="space-y-4">
             {authError && (
               <div className="bg-red-50 text-red-600 p-3 rounded-lg text-sm border border-red-100">
                 {authError}
@@ -189,13 +215,41 @@ export default function Admin() {
               />
             </div>
             
+            {isSignUpMode && (
+              <div>
+                <label htmlFor="passCode" className="block text-sm font-medium text-gray-700 mb-1">Admin Pass Code</label>
+                <input
+                  id="passCode"
+                  type="password"
+                  value={passCode}
+                  onChange={(e) => setPassCode(e.target.value)}
+                  required={isSignUpMode}
+                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-gold focus:border-gold outline-none"
+                  placeholder="Enter secret code"
+                />
+              </div>
+            )}
+            
             <button
               type="submit"
               disabled={isLoading}
               className="w-full bg-navy text-white font-medium py-2.5 rounded-lg hover:bg-navy-light transition-colors disabled:opacity-70 mt-4 flex justify-center items-center"
             >
-              {isLoading ? <RefreshCw className="w-5 h-5 animate-spin" /> : 'Access Dashboard'}
+              {isLoading ? <RefreshCw className="w-5 h-5 animate-spin" /> : (isSignUpMode ? 'Sign Up' : 'Access Dashboard')}
             </button>
+            
+            <div className="mt-4 text-center">
+              <button
+                type="button"
+                onClick={() => {
+                  setIsSignUpMode(!isSignUpMode);
+                  setAuthError('');
+                }}
+                className="text-sm text-gold hover:underline bg-transparent border-none cursor-pointer"
+              >
+                {isSignUpMode ? 'Already have an account? Log in' : 'Need an admin account? Sign up'}
+              </button>
+            </div>
           </form>
         </div>
       </div>

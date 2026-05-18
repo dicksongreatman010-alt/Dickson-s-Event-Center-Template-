@@ -135,6 +135,44 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Food and Decor Teaser */}
+      <section className="py-16 bg-[#F8FAFC]">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid md:grid-cols-2 gap-12 items-center">
+            <motion.div
+              initial={{ opacity: 0, x: -30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+            >
+              <h2 className="text-3xl font-bold text-navy mb-4">Exquisite Food & Bespoke Decor</h2>
+              <p className="text-text-gray mb-6 leading-relaxed">
+                Elevate your event with our world-class catering services and custom venue styling. From authentic local delicacies to sophisticated international cuisines, and elegant floral setups to atmospheric lighting, we ensure every detail is perfect.
+              </p>
+              <Link to="/services" className="btn btn-navy inline-flex items-center gap-2">
+                Explore Our Services <ArrowRight size={16} />
+              </Link>
+            </motion.div>
+            <motion.div
+              initial={{ opacity: 0, x: 30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              className="grid grid-cols-2 gap-4"
+            >
+              <img 
+                src="https://images.unsplash.com/photo-1555244162-803834f70033?w=500&auto=format&fit=crop&q=60" 
+                alt="Fine Dining" 
+                className="w-full h-48 object-cover rounded-xl"
+              />
+              <img 
+                src="https://images.unsplash.com/photo-1519167758481-83f550bb49b3?w=500&auto=format&fit=crop&q=60" 
+                alt="Event Decor" 
+                className="w-full h-48 object-cover rounded-xl mt-8"
+              />
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
       {/* Testimonials */}
       <section className="py-12">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
