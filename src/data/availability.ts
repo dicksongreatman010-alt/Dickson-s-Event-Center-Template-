@@ -15,9 +15,10 @@ const generateBookedDates = () => {
 
 // We will mock unique booked dates for each hall
 export const hallAvailability: Record<string, Date[]> = {
-  'grand-ballroom': generateBookedDates(),
-  'sapphire-hall': generateBookedDates(),
-  'emerald-lounge': generateBookedDates(),
+  'comfort-arinola': generateBookedDates(),
+  'atinuke-hall': generateBookedDates(),
+  'victoria-hall': generateBookedDates(),
+  'green-carpet': generateBookedDates(),
 };
 
 export const checkIsBooked = (hallId: string, date: Date) => {

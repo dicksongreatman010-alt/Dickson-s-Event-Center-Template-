@@ -61,7 +61,7 @@ export default function Availability() {
   return (
     <div className="pt-24 pb-20">
       {/* Header section */}
-      <div className="bg-navy py-16 text-center px-4 relative overflow-hidden">
+      <div className="bg-burgundy py-16 text-center px-4 relative overflow-hidden">
         <div className="absolute inset-0 z-0 opacity-10 bg-[url('https://images.unsplash.com/photo-1519167758481-83f540f28b07?auto=format&fit=crop&q=80')] bg-cover bg-center"></div>
         <div className="relative z-10 max-w-3xl mx-auto">
           <motion.span 
@@ -109,7 +109,7 @@ export default function Availability() {
                         : 'border-gray-200 hover:border-gold hover:bg-gray-50'
                     }`}
                   >
-                    <span className={`font-semibold ${selectedHall === hall.id ? 'text-navy' : 'text-gray-700'}`}>
+                    <span className={`font-semibold ${selectedHall === hall.id ? 'text-burgundy' : 'text-gray-700'}`}>
                       {hall.name}
                     </span>
                     <span className="text-sm text-gray-500 flex items-center mt-1">
@@ -192,7 +192,7 @@ export default function Availability() {
                         </button>
                         <button 
                           onClick={() => navigate(`/booking?hall=${selectedHall}&date=${selectedDate}`)}
-                          className="w-full flex items-center justify-center gap-2 bg-white hover:bg-gray-50 text-navy border border-gray-200 px-4 py-3 rounded-md font-medium transition-colors"
+                          className="w-full flex items-center justify-center gap-2 bg-white hover:bg-gray-50 text-burgundy border border-gray-200 px-4 py-3 rounded-md font-medium transition-colors"
                         >
                           Send Inquiry Instead
                         </button>

@@ -10,7 +10,7 @@ export default function Gallery() {
           <motion.h1 
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            className="text-4xl md:text-5xl font-bold text-navy mb-6"
+            className="text-4xl md:text-5xl font-bold text-burgundy mb-6"
           >
             Event Gallery
           </motion.h1>
@@ -20,7 +20,7 @@ export default function Gallery() {
             transition={{ delay: 0.1 }}
             className="text-lg text-text-gray"
           >
-            Take a look at some of the spectacular events we've hosted at Eko Grandeur.
+            Take a look at some of the spectacular events we've hosted at PentonRise Event Center.
           </motion.p>
         </div>
 
@@ -40,7 +40,7 @@ export default function Gallery() {
                 loading="lazy"
                 className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
               />
-              <div className="absolute inset-0 bg-navy/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+              <div className="absolute inset-0 bg-burgundy/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
                 <span className="text-white font-bold tracking-wider uppercase text-xs border border-white/50 px-4 py-2 rounded-md backdrop-blur-sm">
                   View
                 </span>

@@ -12,7 +12,7 @@ export default function Halls() {
           <motion.h1 
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            className="text-4xl md:text-5xl font-bold text-navy mb-6"
+            className="text-4xl md:text-5xl font-bold text-burgundy mb-6"
           >
             Our Event Spaces
           </motion.h1>
@@ -46,7 +46,7 @@ export default function Halls() {
 
               {/* Content Side */}
               <div className="lg:w-1/2 p-8 lg:p-12 flex flex-col justify-center">
-                <h2 className="text-3xl font-bold text-navy mb-4">{hall.name}</h2>
+                <h2 className="text-3xl font-bold text-burgundy mb-4">{hall.name}</h2>
                 <p className="text-text-gray mb-8 text-lg leading-relaxed">{hall.shortDescription}</p>
                 
                 <div className="grid grid-cols-2 gap-6 mb-8">
@@ -56,7 +56,7 @@ export default function Halls() {
                     </div>
                     <div>
                       <p className="text-[11px] text-text-gray font-bold uppercase tracking-wide">Capacity</p>
-                      <p className="font-semibold text-navy">{hall.capacity}</p>
+                      <p className="font-semibold text-burgundy">{hall.capacity}</p>
                     </div>
                   </div>
                   <div className="flex items-start gap-3">
@@ -65,13 +65,13 @@ export default function Halls() {
                     </div>
                     <div>
                       <p className="text-[11px] text-text-gray font-bold uppercase tracking-wide">Price Range</p>
-                      <p className="font-semibold text-navy">{hall.priceRange}</p>
+                      <p className="font-semibold text-burgundy">{hall.priceRange}</p>
                     </div>
                   </div>
                 </div>
 
                 <div className="mb-8">
-                  <h3 className="text-[11px] font-bold text-navy uppercase tracking-wider mb-4">Key Features</h3>
+                  <h3 className="text-[11px] font-bold text-burgundy uppercase tracking-wider mb-4">Key Features</h3>
                   <ul className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                     {hall.features.map((feature, i) => (
                       <li key={i} className="flex items-center gap-2 text-text-gray">

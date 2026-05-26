@@ -10,31 +10,40 @@ export interface Hall {
 
 export const halls: Hall[] = [
   {
-    id: 'grand-ballroom',
-    name: 'The Grand Ballroom',
-    capacity: '500 - 800 guests',
-    priceRange: '$3,000 - $5,000',
-    shortDescription: 'Our most luxurious space, perfect for grand weddings and large corporate galas. Features crystal chandeliers and a spacious dance floor.',
+    id: 'comfort-arinola',
+    name: 'Comfort Arinola Hall',
+    capacity: '800 (with tables) - 1000 (without tables)',
+    priceRange: 'Contact Us',
+    shortDescription: 'Our largest, fully air-conditioned space, perfect for grand weddings and large corporate galas. Featuring ample room for your biggest events.',
     image: 'https://images.unsplash.com/photo-1519167758481-83f550bb49b3?auto=format&fit=crop&q=80&w=1600',
-    features: ['Crystal Chandeliers', 'Built-in Stage', 'VIP Suite', 'Premium Audio/Visual']
+    features: ['Full Air-Conditioned', 'Orange Box Styling', 'Large Capacity', 'Flexible Layouts']
   },
   {
-    id: 'sapphire-hall',
-    name: 'Sapphire Hall',
-    capacity: '200 - 400 guests',
-    priceRange: '$1,500 - $2,800',
-    shortDescription: 'An elegant, versatile space ideal for mid-sized receptions, birthday parties, and conferences. Offers beautiful natural lighting.',
+    id: 'atinuke-hall',
+    name: 'Atinuke Hall',
+    capacity: '200 (with tables) - 250 (without tables)',
+    priceRange: 'Contact Us',
+    shortDescription: 'An elegant, fully air-conditioned space ideal for mid-sized receptions, birthday parties, and conferences.',
     image: 'https://images.unsplash.com/photo-1464366400600-7168b8af9bc3?auto=format&fit=crop&q=80&w=1600',
-    features: ['Natural Lighting', 'Flexible Seating', 'Private Bar', 'Courtyard Access']
+    features: ['Full Air-Conditioned', 'Purple Box Styling', 'Perfect for Mid-Size', 'Intimate Feel']
   },
   {
-    id: 'emerald-lounge',
-    name: 'Emerald Lounge',
-    capacity: '50 - 150 guests',
-    priceRange: '$800 - $1,200',
-    shortDescription: 'An intimate, sophisticated setting for corporate meetings, bridal showers, and private dinners.',
+    id: 'victoria-hall',
+    name: 'Victoria Hall B',
+    capacity: '60 (with tables) - 80 (without tables)',
+    priceRange: 'Contact Us',
+    shortDescription: 'A comfortable, fully air-conditioned setting for corporate meetings, bridal showers, and smaller private dinners.',
     image: 'https://images.unsplash.com/photo-1555244162-803834f70033?auto=format&fit=crop&q=80&w=1600',
-    features: ['Intimate Atmosphere', 'Lounge Seating', 'Dedicated Server', 'Custom Lighting']
+    features: ['Full Air-Conditioned', 'Yellow Box Styling', 'Private Atmosphere', 'Meeting Ready']
+  },
+  {
+    id: 'green-carpet',
+    name: 'Green Carpet Area',
+    capacity: '80 (with tables) - 100 (without tables)',
+    priceRange: 'Contact Us',
+    shortDescription: 'An open and welcoming green carpet area, perfect for cocktail hours, meet-and-greets, and specialized event segments.',
+    image: 'https://images.unsplash.com/photo-1519225421980-715cb0215aed?auto=format&fit=crop&q=80&w=1600',
+    features: ['Green Box Styling', 'Open Area', 'Standing Events', 'Flexible setup']
   }
 ];
 

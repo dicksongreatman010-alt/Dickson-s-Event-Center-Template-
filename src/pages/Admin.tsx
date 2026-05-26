@@ -13,6 +13,7 @@ export default function Admin() {
   const [password, setPassword] = useState('');
   const [passCode, setPassCode] = useState('');
   const [authError, setAuthError] = useState('');
+  const [authSuccess, setAuthSuccess] = useState('');
 
   const [bookings, setBookings] = useState<Booking[]>([]);
   const [isLoading, setIsLoading] = useState(true);
@@ -41,11 +42,13 @@ export default function Admin() {
   const handleAuth = async (e: React.FormEvent) => {
     e.preventDefault();
     setAuthError('');
+    setAuthSuccess('');
     setIsLoading(true);
     
     if (isSignUpMode) {
-      if (passCode !== import.meta.env.VITE_ADMIN_PASSCODE) {
-        setAuthError('Invalid admin pass code.');
+      const expectedPasscode = import.meta.env.VITE_ADMIN_PASSCODE || 'admin123';
+      if (passCode !== expectedPasscode) {
+        setAuthError('Invalid admin pass code. (Hint: default is ' + expectedPasscode + ')');
         setIsLoading(false);
         return;
       }
@@ -57,8 +60,9 @@ export default function Admin() {
       if (error) {
         setAuthError(error.message);
       } else {
-        alert("Sign up successful! Please check your email for confirmation or log in.");
+        setAuthSuccess("Sign up successful! You can now log in.");
         setIsSignUpMode(false);
+        setPassCode('');
       }
     } else {
       const { error } = await supabase.auth.signInWithPassword({
@@ -132,6 +136,7 @@ export default function Admin() {
     switch (status.toLowerCase()) {
       case 'confirmed': return <CheckCircle className="w-4 h-4 text-green-500" />;
       case 'deposit_paid': return <CreditCard className="w-4 h-4 text-blue-500" />;
+      case 'awaiting_verification': return <Clock className="w-4 h-4 text-purple-500" />;
       case 'cancelled': return <XCircle className="w-4 h-4 text-red-500" />;
       default: return <Clock className="w-4 h-4 text-orange-500" />;
     }
@@ -141,16 +146,39 @@ export default function Admin() {
     switch (status.toLowerCase()) {
       case 'confirmed': return 'bg-green-100 text-green-800 border-green-200';
       case 'deposit_paid': return 'bg-blue-100 text-blue-800 border-blue-200';
+      case 'awaiting_verification': return 'bg-purple-100 text-purple-800 border-purple-200 animate-pulse';
       case 'cancelled': return 'bg-red-100 text-red-800 border-red-200';
       default: return 'bg-orange-100 text-orange-800 border-orange-200';
     }
+  };
+
+  const tracks = [
+    { id: 'neon-run', name: 'Neon Run Track' },
+    { id: 'cyber-drift', name: 'Cyber Drift Track' },
+    { id: 'gravity-drop', name: 'Gravity Drop Track' },
+  ];
+  const consoles = [
+    { id: 'ps5', name: 'PlayStation 5'},
+    { id: 'xbox', name: 'Xbox Series X' },
+    { id: 'pc', name: 'Pro PC Rig' },
+    { id: 'vip', name: 'VIP Room' },
+  ];
+
+  const getVenueName = (id: string, type?: string) => {
+    const hall = halls.find(h => h.id === id);
+    if (hall) return hall.name;
+    const track = tracks.find(t => t.id === id);
+    if (track) return track.name;
+    const cons = consoles.find(c => c.id === id);
+    if (cons) return cons.name;
+    return id;
   };
 
   const filteredBookings = bookings.filter(booking => {
     const matchesSearch = 
       booking.guest_name?.toLowerCase().includes(searchTerm.toLowerCase()) || 
       booking.guest_email?.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      halls.find(h => h.id === booking.hall_id)?.name.toLowerCase().includes(searchTerm.toLowerCase());
+      getVenueName(booking.hall_id, booking.event_type)?.toLowerCase().includes(searchTerm.toLowerCase());
     
     const matchesStatus = filterStatus === 'all' || booking.status === filterStatus;
     
@@ -160,7 +188,7 @@ export default function Admin() {
   if (authLoading) {
     return (
       <div className="pt-24 pb-20 min-h-screen flex items-center justify-center bg-gray-50">
-        <div className="flex items-center space-x-3 text-navy">
+        <div className="flex items-center space-x-3 text-burgundy">
           <RefreshCw className="w-6 h-6 animate-spin" />
           <span className="font-medium">Loading session...</span>
         </div>
@@ -173,11 +201,11 @@ export default function Admin() {
       <div className="pt-24 pb-20 min-h-screen flex items-center justify-center bg-gray-50 px-4">
         <div className="bg-white p-8 rounded-2xl shadow-xl w-full max-w-md border border-gray-100">
           <div className="flex justify-center mb-6">
-            <div className="w-16 h-16 bg-navy/5 flex items-center justify-center rounded-full text-navy">
+            <div className="w-16 h-16 bg-burgundy/5 flex items-center justify-center rounded-full text-burgundy">
               <Lock className="w-8 h-8" />
             </div>
           </div>
-          <h2 className="text-2xl font-bold text-center text-navy mb-2">Admin {isSignUpMode ? 'Registration' : 'Login'}</h2>
+          <h2 className="text-2xl font-bold text-center text-burgundy mb-2">Admin {isSignUpMode ? 'Registration' : 'Login'}</h2>
           <p className="text-center text-gray-500 text-sm mb-8">
             {isSignUpMode ? 'Create a new admin account' : 'Sign in to manage venue bookings'}
           </p>
@@ -186,6 +214,11 @@ export default function Admin() {
             {authError && (
               <div className="bg-red-50 text-red-600 p-3 rounded-lg text-sm border border-red-100">
                 {authError}
+              </div>
+            )}
+            {authSuccess && (
+              <div className="bg-green-50 text-green-600 p-3 rounded-lg text-sm border border-green-100">
+                {authSuccess}
               </div>
             )}
             
@@ -233,7 +266,7 @@ export default function Admin() {
             <button
               type="submit"
               disabled={isLoading}
-              className="w-full bg-navy text-white font-medium py-2.5 rounded-lg hover:bg-navy-light transition-colors disabled:opacity-70 mt-4 flex justify-center items-center"
+              className="w-full bg-burgundy text-white font-medium py-2.5 rounded-lg hover:bg-burgundy-light transition-colors disabled:opacity-70 mt-4 flex justify-center items-center"
             >
               {isLoading ? <RefreshCw className="w-5 h-5 animate-spin" /> : (isSignUpMode ? 'Sign Up' : 'Access Dashboard')}
             </button>
@@ -263,7 +296,7 @@ export default function Admin() {
         {/* Header */}
         <div className="flex flex-col md:flex-row justify-between items-start md:items-center space-y-4 md:space-y-0 mb-8 mt-4">
           <div>
-            <h1 className="text-3xl font-bold text-navy">Admin Dashboard</h1>
+            <h1 className="text-3xl font-bold text-burgundy">Admin Dashboard</h1>
             <p className="text-text-gray mt-1 text-sm">Manage venue bookings and inquiries</p>
           </div>
           <div className="flex items-center space-x-3">
@@ -309,6 +342,7 @@ export default function Admin() {
             >
               <option value="all">All Statuses</option>
               <option value="pending">Pending</option>
+              <option value="awaiting_verification">Awaiting Verification</option>
               <option value="deposit_paid">Deposit Paid</option>
               <option value="confirmed">Confirmed</option>
               <option value="cancelled">Cancelled</option>
@@ -351,11 +385,11 @@ export default function Admin() {
                       className="hover:bg-gray-50 transition-colors"
                     >
                       <td className="px-6 py-4 whitespace-nowrap">
-                        <div className="text-sm font-semibold text-navy">
+                        <div className="text-sm font-semibold text-burgundy">
                           {booking.event_date ? format(parseISO(booking.event_date), 'MMM dd, yyyy') : 'N/A'}
                         </div>
                         <div className="text-sm text-gray-500 mt-1">
-                          {halls.find(h => h.id === booking.hall_id)?.name || booking.hall_id}
+                          {getVenueName(booking.hall_id, booking.event_type)}
                         </div>
                       </td>
                       <td className="px-6 py-4">
@@ -393,8 +427,9 @@ export default function Admin() {
                             }`}
                           >
                             <option value="pending">Mark Pending</option>
+                            <option value="awaiting_verification">Awaiting Verification</option>
                             <option value="deposit_paid">Mark Deposit Paid</option>
-                            <option value="confirmed">Mark Confirmed</option>
+                            <option value="confirmed">Verify & Confirmed</option>
                             <option value="cancelled">Mark Cancelled</option>
                           </select>
                           {updatingId === booking.id && (

@@ -2,19 +2,20 @@
 
 @theme {
   --font-sans: "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
-  --color-navy: #002349;
-  --color-navy-light: #003366;
-  --color-gold: #C5A059;
-  --color-gold-light: #E5D5B7;
-  --color-gold-dark: #A88644;
+  --font-serif: "Playfair Display", ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
+  --color-burgundy: #3E060F;
+  --color-burgundy-light: #650C1B;
+  --color-gold: #D1D5DB;
+  --color-gold-light: #F3F4F6;
+  --color-gold-dark: #9CA3AF;
   --color-off-white: #F8F9FA;
-  --color-text-gray: #4A5568;
+  --color-text-gray: #4B5563;
 }
 
 body {
   font-family: var(--font-sans);
   background: linear-gradient(135deg, #F8F9FA 0%, #EDF2F7 100%);
-  color: var(--color-navy);
+  color: var(--color-burgundy);
   -webkit-font-smoothing: antialiased;
   min-height: 100vh;
 }
@@ -24,18 +25,57 @@ html {
   scroll-behavior: smooth;
 }
 
+/* custom dark datepicker overrides for Hoverboard/GoKart */
+.custom-dark-datepicker .react-datepicker {
+  background-color: #1e293b;
+  border-color: #334155;
+  color: #f8fafc;
+}
+.custom-dark-datepicker .react-datepicker__header {
+  background-color: #0f172a;
+  border-bottom-color: #334155;
+}
+.custom-dark-datepicker .react-datepicker__current-month,
+.custom-dark-datepicker .react-datepicker-time__header,
+.custom-dark-datepicker .react-datepicker-year-header {
+  color: #cbd5e1;
+}
+.custom-dark-datepicker .react-datepicker__day-name,
+.custom-dark-datepicker .react-datepicker__day,
+.custom-dark-datepicker .react-datepicker__time-name {
+  color: #94a3b8;
+}
+.custom-dark-datepicker .react-datepicker__day:hover,
+.custom-dark-datepicker .react-datepicker__month-text:hover,
+.custom-dark-datepicker .react-datepicker__quarter-text:hover,
+.custom-dark-datepicker .react-datepicker__year-text:hover {
+  background-color: #334155;
+}
+.custom-dark-datepicker .react-datepicker__day--selected {
+  background-color: #06b6d4;
+  color: #0f172a;
+}
+/* For Go Kart */
+.bg-\[\#111111\] .custom-dark-datepicker .react-datepicker__day--selected {
+  background-color: #dc2626;
+  color: #ffffff;
+}
+
 @layer components {
   .btn {
     @apply px-6 py-3 rounded-lg font-semibold text-sm uppercase tracking-wide transition-all duration-200 inline-flex justify-center items-center text-center;
   }
   .btn-gold {
-    @apply bg-gold text-navy hover:bg-gold-light;
+    @apply bg-gold text-burgundy font-bold hover:bg-gold-dark hover:text-burgundy;
+  }
+  .btn-burgundy {
+    @apply bg-burgundy text-white hover:bg-burgundy-light;
   }
   .btn-outline {
-    @apply bg-transparent border border-gold text-gold hover:bg-gold hover:text-navy;
+    @apply bg-transparent border border-burgundy text-burgundy hover:bg-burgundy hover:text-white;
   }
   .section-title {
-    @apply text-lg font-bold uppercase tracking-[1px] text-navy flex items-center gap-2 mb-4 mt-6;
+    @apply text-lg font-bold uppercase tracking-[1px] text-burgundy flex items-center gap-2 mb-4 mt-6;
   }
   .section-title::after {
     content: '';
@@ -48,9 +88,9 @@ html {
     @apply bg-white rounded-2xl border border-gold-light p-6 md:p-8 shadow-[0_10px_25px_rgba(0,0,0,0.05)];
   }
   .form-label {
-    @apply text-[11px] font-bold text-navy uppercase mb-1.5 block;
+    @apply text-[11px] font-bold text-burgundy uppercase mb-1.5 block;
   }
   .form-input {
-    @apply w-full p-2.5 border border-[#E2E8F0] rounded-md mb-3 text-[13px] focus:outline-none focus:border-gold focus:ring-1 focus:ring-gold transition-colors bg-white;
+    @apply w-full p-2.5 border border-[#E2E8F0] rounded-md mb-3 text-[13px] focus:outline-none focus:border-burgundy focus:ring-1 focus:ring-burgundy transition-colors bg-white;
   }
 }

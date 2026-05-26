@@ -5,7 +5,7 @@ import { CheckCircle2, MessageCircle } from 'lucide-react';
 import { halls } from '../data/content';
 import { DatePicker } from '../components/DatePicker';
 import { getBookedDatesForHall, createBookingInquiry } from '../services/bookingService';
-import { format, parseISO } from 'date-fns';
+import { format, parseISO, addDays, addWeeks, addMonths } from 'date-fns';
 import { supabase } from '../lib/supabase';
 
 export default function Booking() {
@@ -24,8 +24,13 @@ export default function Booking() {
     guests: '',
     date: '',
     hall: '',
-    message: ''
+    message: '',
+    isRecurring: false,
+    recurringType: 'weekly',
+    recurringCount: '2'
   });
+
+  const [bookingId, setBookingId] = useState('');
 
   // Fetch booked dates whenever a hall is selected
   useEffect(() => {
@@ -78,16 +83,36 @@ export default function Booking() {
   const today = new Date().toISOString().split('T')[0];
 
   const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
-    const { name, value } = e.target;
+    const target = e.target as HTMLInputElement;
+    const name = target.name;
+    const value = target.type === 'checkbox' ? target.checked : target.value;
+    
     setFormData(prev => ({ ...prev, [name]: value }));
     
     if (name === 'date') {
-      if (value && value < today) {
+      if (typeof value === 'string' && value && value < today) {
         setDateError('Please select a future date for your event.');
       } else {
         setDateError('');
       }
     }
+  };
+
+  const getRecurringDates = () => {
+    if (!formData.date || !formData.isRecurring) return [formData.date];
+    
+    const dates = [formData.date];
+    const initialDate = parseISO(formData.date);
+    const count = parseInt(formData.recurringCount, 10);
+    
+    for (let i = 1; i < count; i++) {
+      let nextDate = initialDate;
+      if (formData.recurringType === 'daily') nextDate = addDays(initialDate, i);
+      if (formData.recurringType === 'weekly') nextDate = addWeeks(initialDate, i);
+      if (formData.recurringType === 'monthly') nextDate = addMonths(initialDate, i);
+      dates.push(format(nextDate, 'yyyy-MM-dd'));
+    }
+    return dates;
   };
 
   const handleSubmit = async (e: FormEvent) => {
@@ -105,11 +130,14 @@ export default function Booking() {
     }
 
     if (formData.date && formData.hall) {
-      const isBooked = bookedDates.some(
-        d => format(d, 'yyyy-MM-dd') === formData.date
+      const allDates = getRecurringDates();
+      
+      const isBooked = allDates.some(newDate => 
+        bookedDates.some(booked => format(booked, 'yyyy-MM-dd') === newDate)
       );
+      
       if (isBooked) {
-        setDateError('This date is already booked for the selected hall.');
+        setDateError('One or more of selected dates are already booked for the selected hall.');
         return;
       }
     }
@@ -124,19 +152,28 @@ export default function Booking() {
     
     try {
       const selectedHallName = halls.find(h => h.id === formData.hall)?.name || formData.hall;
+      let newBookingId = '';
+      const allDates = getRecurringDates();
 
       // 1. Save to Supabase
       try {
-        await createBookingInquiry(formData);
+        for (let i = 0; i < allDates.length; i++) {
+          const result = await createBookingInquiry({ ...formData, date: allDates[i] });
+          if (i === 0 && result.success && result.data && result.data.length > 0) {
+            newBookingId = result.data[0].id;
+            setBookingId(newBookingId);
+          }
+        }
       } catch (err) {
         console.warn('Could not save booking to Supabase, perhaps the "bookings" table does not exist or permissions are incorrect. Continuing with email notification...', err);
       }
       
       // 2. Send email notification via backend API
+      const datesStr = allDates.join(', ');
       const response = await fetch('/api/inquiry', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ ...formData, hall: selectedHallName }),
+        body: JSON.stringify({ ...formData, date: datesStr, hall: selectedHallName }),
       });
       
       const data = await response.json();
@@ -147,7 +184,11 @@ export default function Booking() {
       }
       
       if (checkoutParam) {
-        await handleDeposit();
+        if (newBookingId) {
+          window.location.href = `/payment?bookingId=${newBookingId}&amount=500000`;
+        } else {
+          await handleDeposit();
+        }
       } else {
         setIsSubmitted(true);
       }
@@ -161,6 +202,11 @@ export default function Booking() {
 
   const handleDeposit = async () => {
     setIsLoading(true);
+    if (bookingId) {
+      window.location.href = `/payment?bookingId=${bookingId}&amount=500000`;
+      return;
+    }
+    
     try {
       const selectedHallName = halls.find(h => h.id === formData.hall)?.name || formData.hall;
       const response = await fetch('/api/checkout', {
@@ -184,7 +230,9 @@ export default function Booking() {
 
   if (isSubmitted) {
     const selectedHallName = halls.find(h => h.id === formData.hall)?.name || formData.hall;
-    const waMessage = `New Booking Inquiry%0A%0AName: ${formData.name}%0APhone: ${formData.phone}%0AEmail: ${formData.email}%0AEvent: ${formData.eventType}%0AGuests: ${formData.guests}%0ADate: ${formData.date}%0AHall: ${selectedHallName}%0AMessage: ${formData.message}`;
+    const allDates = getRecurringDates();
+    const datesStr = formData.isRecurring ? `${allDates.length} occurrences (${formData.recurringType}): ${allDates.join(', ')}` : formData.date;
+    const waMessage = `New Booking Inquiry%0A%0AName: ${formData.name}%0APhone: ${formData.phone}%0AEmail: ${formData.email}%0AEvent: ${formData.eventType}%0AGuests: ${formData.guests}%0ADate: ${datesStr}%0AHall: ${selectedHallName}%0AMessage: ${formData.message}`;
     const waUrl = `https://wa.me/1234567890?text=${waMessage}`;
 
     return (
@@ -197,15 +245,15 @@ export default function Booking() {
           <div className="w-16 h-16 bg-[#25D366]/10 text-[#25D366] rounded-full flex items-center justify-center mx-auto mb-6">
             <CheckCircle2 size={32} />
           </div>
-          <h2 className="text-2xl font-bold text-navy mb-4">Inquiry Sent!</h2>
+          <h2 className="text-2xl font-bold text-burgundy mb-4">Inquiry Sent!</h2>
           <p className="text-text-gray text-sm mb-8 leading-relaxed">
-            Thank you for choosing Eko Grandeur. We have sent a confirmation to your email. Our team will review your inquiry and get back to you shortly.
+            Thank you for choosing PentonRise Event Center. We have sent a confirmation to your email. Our team will review your inquiry and get back to you shortly.
           </p>
           <div className="space-y-3">
             <button 
               onClick={handleDeposit}
               disabled={isLoading}
-              className="btn bg-navy text-white hover:bg-navy-light w-full"
+              className="btn bg-burgundy text-white hover:bg-burgundy-light w-full"
             >
               {isLoading ? 'Processing...' : 'Secure Date with $500 Deposit'}
             </button>
@@ -223,7 +271,8 @@ export default function Booking() {
                 setIsSubmitted(false);
                 setDateError('');
                 setFormData({
-                  name: '', phone: '', email: '', eventType: '', guests: '', date: '', hall: '', message: ''
+                  name: '', phone: '', email: '', eventType: '', guests: '', date: '', hall: '', message: '',
+                  isRecurring: false, recurringType: 'weekly', recurringCount: '2'
                 });
               }}
               className="btn btn-outline w-full"
@@ -244,7 +293,7 @@ export default function Booking() {
           <motion.h1 
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            className="text-3xl md:text-4xl font-bold text-navy mb-4"
+            className="text-3xl md:text-4xl font-bold text-burgundy mb-4"
           >
             Book Your Event
           </motion.h1>
@@ -264,10 +313,13 @@ export default function Booking() {
           transition={{ delay: 0.2 }}
           className="booking-card"
         >
-          <h3 className="text-lg font-bold text-navy mb-6">Check Availability</h3>
+          <h3 className="text-lg font-bold text-burgundy mb-6">Check Availability</h3>
           <form onSubmit={handleSubmit}>
             
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-x-6">
+            <motion.div 
+              initial={{ opacity: 0, y: 15 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.3 }}
+              className="grid grid-cols-1 md:grid-cols-2 gap-x-6"
+            >
               <div>
                 <label htmlFor="name" className="form-label">Full Name</label>
                 <input 
@@ -294,9 +346,12 @@ export default function Booking() {
                   placeholder="+1 (234) 567-890"
                 />
               </div>
-            </div>
+            </motion.div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-x-6">
+            <motion.div 
+              initial={{ opacity: 0, y: 15 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.4 }}
+              className="grid grid-cols-1 md:grid-cols-2 gap-x-6"
+            >
               <div>
                 <label htmlFor="email" className="form-label">Email Address</label>
                 <input 
@@ -327,9 +382,12 @@ export default function Booking() {
                   <option value="Other">Other</option>
                 </select>
               </div>
-            </div>
+            </motion.div>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-x-6">
+            <motion.div 
+              initial={{ opacity: 0, y: 15 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.5 }}
+              className="grid grid-cols-1 md:grid-cols-3 gap-x-6"
+            >
               <div>
                 <label htmlFor="guests" className="form-label">Guests</label>
                 <input 
@@ -375,9 +433,72 @@ export default function Booking() {
                   ))}
                 </select>
               </div>
-            </div>
+            </motion.div>
 
-            <div>
+            <motion.div 
+               initial={{ opacity: 0, y: 15 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.55 }}
+               className="mb-4 bg-gray-50 border border-gray-100 rounded-lg p-5"
+            >
+               <div className="flex items-center mb-4">
+                 <input
+                   type="checkbox"
+                   id="isRecurring"
+                   name="isRecurring"
+                   checked={formData.isRecurring}
+                   onChange={handleChange}
+                   className="w-4 h-4 text-burgundy bg-gray-100 border-gray-300 rounded focus:ring-burgundy"
+                 />
+                 <label htmlFor="isRecurring" className="ml-2 text-sm font-medium text-gray-900">
+                   Make this a recurring booking
+                 </label>
+               </div>
+               
+               {formData.isRecurring && (
+                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                   <div>
+                     <label htmlFor="recurringType" className="form-label text-xs">Frequency</label>
+                     <select 
+                       id="recurringType" 
+                       name="recurringType" 
+                       value={formData.recurringType}
+                       onChange={handleChange}
+                       className="form-input py-2"
+                     >
+                       <option value="daily">Daily</option>
+                       <option value="weekly">Weekly</option>
+                       <option value="monthly">Monthly</option>
+                     </select>
+                   </div>
+                   <div>
+                     <label htmlFor="recurringCount" className="form-label text-xs">Total Occurrences</label>
+                     <input 
+                       type="number" 
+                       id="recurringCount" 
+                       name="recurringCount" 
+                       min="2"
+                       max="50"
+                       value={formData.recurringCount}
+                       onChange={handleChange}
+                       className="form-input py-2"
+                     />
+                   </div>
+                   {formData.date && (
+                     <div className="sm:col-span-2 mt-2 p-3 bg-blue-50 text-blue-800 text-xs rounded border border-blue-100">
+                       <p className="font-semibold mb-1">Booking Schedule:</p>
+                       <div className="max-h-24 overflow-y-auto">
+                         <ul className="list-disc pl-4 space-y-1">
+                           {getRecurringDates().map((d, i) => (
+                             <li key={i}>{format(parseISO(d), 'EEEE, MMMM do, yyyy')}</li>
+                           ))}
+                         </ul>
+                       </div>
+                     </div>
+                   )}
+                 </div>
+               )}
+            </motion.div>
+
+            <motion.div initial={{ opacity: 0, y: 15 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.6 }}>
               <label htmlFor="message" className="form-label">Message / Special Requests</label>
               <textarea 
                 id="message" 
@@ -388,7 +509,7 @@ export default function Booking() {
                 className="form-input !h-[80px] resize-none"
                 placeholder="Tell us more about your event..."
               ></textarea>
-            </div>
+            </motion.div>
 
             {error && (
               <div className="p-3 bg-red-50 border border-red-200 text-red-600 rounded-md text-sm">
@@ -396,7 +517,8 @@ export default function Booking() {
               </div>
             )}
 
-            <button 
+            <motion.button 
+              initial={{ opacity: 0, y: 15 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.7 }}
               type="submit"
               disabled={isLoading}
               className="btn btn-gold w-full mt-2 disabled:opacity-70 disabled:cursor-not-allowed text-lg font-semibold h-12"
@@ -406,10 +528,10 @@ export default function Booking() {
                 : checkoutParam 
                   ? 'Proceed to Secure Payment' 
                   : 'Submit Inquiry'}
-            </button>
-            <div className="mt-6 pt-5 border-t border-[#EEE] text-[12px] text-text-gray text-center">
+            </motion.button>
+            <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.8 }} className="mt-6 pt-5 border-t border-[#EEE] text-[12px] text-text-gray text-center">
               <p>We typically respond within 2 hours</p>
-            </div>
+            </motion.div>
           </form>
         </motion.div>
 
@@ -417,14 +539,14 @@ export default function Booking() {
 
       {/* Confirmation Modal */}
       {showConfirmModal && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-navy/60 backdrop-blur-sm">
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-burgundy/60 backdrop-blur-sm">
           <motion.div 
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
             className="bg-white rounded-2xl shadow-xl w-full max-w-lg overflow-hidden flex flex-col max-h-[90vh]"
           >
             <div className="p-6 border-b border-gray-100 bg-gray-50 flex justify-between items-center">
-              <h3 className="text-xl font-bold text-navy">Confirm Booking Details</h3>
+              <h3 className="text-xl font-bold text-burgundy">Confirm Booking Details</h3>
               <button 
                 onClick={() => setShowConfirmModal(false)}
                 className="text-gray-400 hover:text-gray-600 transition-colors"
@@ -442,40 +564,53 @@ export default function Booking() {
               <div className="space-y-4">
                 <div className="flex flex-col sm:flex-row sm:justify-between py-2 border-b border-gray-100">
                   <span className="text-gray-500 text-sm font-medium">Guest Name</span>
-                  <span className="font-semibold text-navy">{formData.name}</span>
+                  <span className="font-semibold text-burgundy">{formData.name}</span>
                 </div>
                 <div className="flex flex-col sm:flex-row sm:justify-between py-2 border-b border-gray-100">
                   <span className="text-gray-500 text-sm font-medium">Email</span>
-                  <span className="font-semibold text-navy">{formData.email}</span>
+                  <span className="font-semibold text-burgundy">{formData.email}</span>
                 </div>
                 <div className="flex flex-col sm:flex-row sm:justify-between py-2 border-b border-gray-100">
                   <span className="text-gray-500 text-sm font-medium">Phone Number</span>
-                  <span className="font-semibold text-navy">{formData.phone}</span>
+                  <span className="font-semibold text-burgundy">{formData.phone}</span>
                 </div>
                 <div className="flex flex-col sm:flex-row sm:justify-between py-2 border-b border-gray-100">
                   <span className="text-gray-500 text-sm font-medium">Event Type</span>
-                  <span className="font-semibold text-navy">{formData.eventType}</span>
+                  <span className="font-semibold text-burgundy">{formData.eventType}</span>
                 </div>
                 <div className="flex flex-col sm:flex-row sm:justify-between py-2 border-b border-gray-100">
                   <span className="text-gray-500 text-sm font-medium">Expected Guests</span>
-                  <span className="font-semibold text-navy">{formData.guests}</span>
+                  <span className="font-semibold text-burgundy">{formData.guests}</span>
                 </div>
                 <div className="flex flex-col sm:flex-row sm:justify-between py-2 border-b border-gray-100">
-                  <span className="text-gray-500 text-sm font-medium">Event Date</span>
-                  <span className="font-semibold text-navy">
-                    {formData.date ? format(parseISO(formData.date), 'MMMM do, yyyy') : ''}
+                  <span className="text-gray-500 text-sm font-medium">Event Date{formData.isRecurring ? 's' : ''}</span>
+                  <span className="font-semibold text-burgundy text-right">
+                    {formData.date ? (
+                      formData.isRecurring ? (
+                        <div className="flex flex-col items-end">
+                          <span className="mb-1">{getRecurringDates().length} occurrences ({formData.recurringType}):</span>
+                          <span className="text-xs text-gray-500 max-h-24 overflow-y-auto pl-4 text-right">
+                            {getRecurringDates().map((d, i) => (
+                              <div key={i}>{format(parseISO(d), 'MMM do, yyyy')}</div>
+                            ))}
+                          </span>
+                        </div>
+                      ) : (
+                        format(parseISO(formData.date), 'MMMM do, yyyy')
+                      )
+                    ) : ''}
                   </span>
                 </div>
                 <div className="flex flex-col sm:flex-row sm:justify-between py-2 border-b border-gray-100">
                   <span className="text-gray-500 text-sm font-medium">Preferred Hall</span>
-                  <span className="font-semibold text-navy">
+                  <span className="font-semibold text-burgundy">
                     {halls.find(h => h.id === formData.hall)?.name || formData.hall}
                   </span>
                 </div>
                 {formData.message && (
                   <div className="flex flex-col py-2 border-b border-gray-100">
                     <span className="text-gray-500 text-sm font-medium mb-1">Additional Message</span>
-                    <span className="text-sm text-navy bg-gray-50 p-2 rounded">{formData.message}</span>
+                    <span className="text-sm text-burgundy bg-gray-50 p-2 rounded">{formData.message}</span>
                   </div>
                 )}
               </div>
@@ -490,7 +625,7 @@ export default function Booking() {
               </button>
               <button 
                 onClick={processSubmission}
-                className="w-full sm:w-auto px-5 py-2.5 text-sm font-bold text-white bg-navy hover:bg-navy-light rounded-lg transition-colors flex items-center justify-center gap-2"
+                className="w-full sm:w-auto px-5 py-2.5 text-sm font-bold text-white bg-burgundy hover:bg-burgundy-light rounded-lg transition-colors flex items-center justify-center gap-2"
               >
                 {checkoutParam ? 'Confirm & Proceed to Payment' : 'Confirm Application'}
               </button>

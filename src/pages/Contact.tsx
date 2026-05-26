@@ -10,7 +10,7 @@ export default function Contact() {
           <motion.h1 
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            className="text-4xl md:text-5xl font-bold text-navy mb-6"
+            className="text-4xl md:text-5xl font-bold text-burgundy mb-6"
           >
             Get in Touch
           </motion.h1>
@@ -33,7 +33,7 @@ export default function Contact() {
             transition={{ delay: 0.2 }}
             className="bg-white p-8 md:p-10 rounded-2xl border border-[#E2E8F0] shadow-[0_4px_6px_rgba(0,0,0,0.02)]"
           >
-            <h2 className="text-2xl font-bold text-navy mb-8 text-center">Contact Information</h2>
+            <h2 className="text-2xl font-bold text-burgundy mb-8 text-center">Contact Information</h2>
             
             <div className="space-y-8">
               <div className="flex items-start gap-4">
@@ -41,7 +41,7 @@ export default function Contact() {
                   <MapPin size={24} />
                 </div>
                 <div>
-                  <h3 className="font-bold text-navy text-lg mb-1">Our Location</h3>
+                  <h3 className="font-bold text-burgundy text-lg mb-1">Our Location</h3>
                   <p className="text-text-gray leading-relaxed">
                     123 Event Center Blvd,<br />
                     Metropolis, NY 10001
@@ -54,7 +54,7 @@ export default function Contact() {
                   <Phone size={24} />
                 </div>
                 <div>
-                  <h3 className="font-bold text-navy text-lg mb-1">Phone Number</h3>
+                  <h3 className="font-bold text-burgundy text-lg mb-1">Phone Number</h3>
                   <p className="text-text-gray mb-1">Main: <a href="tel:+1234567890" className="hover:text-gold transition-colors">+1 (234) 567-890</a></p>
                   <p className="text-text-gray">Events: <a href="tel:+1987654321" className="hover:text-gold transition-colors">+1 (987) 654-321</a></p>
                 </div>
@@ -65,9 +65,9 @@ export default function Contact() {
                   <Mail size={24} />
                 </div>
                 <div>
-                  <h3 className="font-bold text-navy text-lg mb-1">Email Address</h3>
-                  <p className="text-text-gray mb-1"><a href="mailto:info@ekograndeur.com" className="hover:text-gold transition-colors">info@ekograndeur.com</a></p>
-                  <p className="text-text-gray"><a href="mailto:bookings@ekograndeur.com" className="hover:text-gold transition-colors">bookings@ekograndeur.com</a></p>
+                  <h3 className="font-bold text-burgundy text-lg mb-1">Email Address</h3>
+                  <p className="text-text-gray mb-1"><a href="mailto:info@pentonrise.com" className="hover:text-gold transition-colors">info@pentonrise.com</a></p>
+                  <p className="text-text-gray"><a href="mailto:bookings@pentonrise.com" className="hover:text-gold transition-colors">bookings@pentonrise.com</a></p>
                 </div>
               </div>
 
@@ -76,7 +76,7 @@ export default function Contact() {
                   <Clock size={24} />
                 </div>
                 <div>
-                  <h3 className="font-bold text-navy text-lg mb-1">Office Hours</h3>
+                  <h3 className="font-bold text-burgundy text-lg mb-1">Office Hours</h3>
                   <p className="text-text-gray mb-1">Monday - Friday: 9:00 AM - 6:00 PM</p>
                   <p className="text-text-gray">Saturday: 10:00 AM - 4:00 PM</p>
                 </div>

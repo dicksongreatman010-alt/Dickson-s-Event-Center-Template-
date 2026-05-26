@@ -42,7 +42,7 @@ export function DatePicker({ selected, onSelect, disabledDates = [], minDate, cl
         type="button"
         onClick={() => setIsOpen(!isOpen)}
         className={`form-input flex items-center justify-between w-full text-left bg-white
-          ${!selected ? 'text-text-gray' : 'text-navy'}
+          ${!selected ? 'text-text-gray' : 'text-burgundy'}
           ${hasError ? '!border-red-500 focus:!border-red-500 focus:!ring-red-500' : ''}
         `}
       >

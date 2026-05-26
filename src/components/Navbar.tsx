@@ -25,14 +25,19 @@ export default function Navbar() {
     { name: 'Home', path: '/' },
     { name: 'Halls', path: '/halls' },
     { name: 'Services', path: '/services' },
+    { name: 'Gaming Lounge', path: '/gaming' },
+    { name: 'Hoverboard Arena', path: '/hoverboard' },
+    { name: 'Food Lounge', path: '/food-lounge' },
+    { name: 'Go Kart Arena', path: '/go-kart' },
     { name: 'Availability', path: '/availability' },
     { name: 'Gallery', path: '/gallery' },
     { name: 'Contact', path: '/contact' },
+    { name: 'Admin', path: '/admin' },
   ];
 
   return (
     <header 
-      className={`fixed top-0 w-full z-50 transition-all duration-300 bg-navy border-b-[4px] border-gold h-[72px] flex items-center`}
+      className={`fixed top-0 w-full z-50 transition-all duration-300 bg-burgundy border-b-[4px] border-gold h-[72px] flex items-center`}
     >
       <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center w-full">
@@ -75,12 +80,12 @@ export default function Navbar() {
 
       {/* Mobile Nav */}
       {isOpen && (
-        <div className="md:hidden absolute top-full left-0 w-full bg-navy shadow-lg border-t border-navy-light py-4 px-4 flex flex-col gap-4">
+        <div className="md:hidden absolute top-full left-0 w-full bg-burgundy shadow-lg border-t border-burgundy-light py-4 px-4 flex flex-col gap-4">
           {navLinks.map((link) => (
             <Link
               key={link.name}
               to={link.path}
-              className={`text-[14px] font-medium py-2 border-b border-navy-light ${
+              className={`text-[14px] font-medium py-2 border-b border-burgundy-light ${
                 location.pathname === link.path ? 'text-gold' : 'text-white opacity-90'
               }`}
             >
