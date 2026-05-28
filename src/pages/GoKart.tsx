@@ -45,14 +45,15 @@ export default function GoKart() {
   return (
     <div className="w-full pb-20 bg-[#111111] text-white font-sans">
       {/* Hero Section */}
-      <div className="relative h-[60vh] flex items-center justify-center overflow-hidden">
+      <div className="relative h-[65vh] flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0 w-full h-full">
           <img 
-            src="https://images.unsplash.com/photo-1596700589139-4ddc6da155de?auto=format&fit=crop&q=80&w=2000" 
-            alt="Go Kart Track" 
+            src="https://images.prismic.io/teamsport/ZrSDskaF0TcGIxiz_TMD00181.png?auto=format%2Ccompress&rect=0%2C12%2C1440%2C935&w=1080&fit=max" 
+            alt="Go Kart Track starting grid" 
             className="w-full h-full object-cover"
+            referrerPolicy="no-referrer"
           />
-          <div className="absolute inset-0 bg-black/70" />
+          <div className="absolute inset-0 bg-black/60" />
           {/* Subtle checkered overlay pattern */}
           <div className="absolute inset-0 opacity-10" style={{ backgroundImage: 'linear-gradient(45deg, #000 25%, transparent 25%, transparent 75%, #000 75%, #000), linear-gradient(45deg, #000 25%, transparent 25%, transparent 75%, #000 75%, #000)', backgroundSize: '40px 40px', backgroundPosition: '0 0, 20px 20px' }}></div>
         </div>
@@ -330,12 +331,72 @@ export default function GoKart() {
                
                <div className="bg-gray-950 p-6 border-t border-gray-800 text-center">
                  <p className="text-xs text-gray-500 mb-3">Beat the lap record to win a free Grand Prix entry next month.</p>
-                 <img src="https://images.unsplash.com/photo-1515569067071-ec3b51335dd0?w=500&q=80" alt="Track Layout" className="w-full h-32 object-cover rounded-lg border border-gray-800 opacity-50 grayscale" />
-                 <div className="text-[10px] text-gray-500 mt-2 uppercase font-bold tracking-widest font-mono">Circuit Layout A - Standard</div>
+                 <img src="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/33/49/7f/86/put-the-pedal-to-the.jpg?w=900&h=500&s=1" alt="Track Action Cornering" className="w-full h-32 object-cover rounded-lg border border-gray-800" referrerPolicy="no-referrer" />
+                 <div className="text-[10px] text-gray-400 mt-2 uppercase font-bold tracking-widest font-mono">Precision Cornering Zone</div>
                </div>
             </div>
           </div>
 
+        </div>
+
+        {/* High-Octane Circuit Arena Gallery */}
+        <div className="mt-20 border-t border-gray-800 pt-16">
+          <div className="text-center mb-10">
+            <span className="text-red-500 font-extrabold tracking-[0.25em] uppercase text-xs block mb-2">The Circuit Layout</span>
+            <h2 className="text-3xl md:text-5xl font-black italic uppercase tracking-tighter text-white">
+              Apex <span className="text-red-600">Circuit Highlights</span>
+            </h2>
+            <p className="text-gray-400 max-w-2xl mx-auto mt-3 text-sm">
+              Take a visual lap around our highly engineered indoor/outdoor standard track. Experience top cornering speeds, tight sweeping hairpins, and a long straightaway built for high G-forces.
+            </p>
+          </div>
+          
+          <div className="grid md:grid-cols-3 gap-6">
+            <div className="group relative overflow-hidden rounded-2xl border border-gray-800 bg-gray-950 transition-all hover:border-red-600/50">
+              <div className="h-64 overflow-hidden relative">
+                <img 
+                  src="https://images.prismic.io/teamsport/ZrSDskaF0TcGIxiz_TMD00181.png?auto=format%2Ccompress&rect=0%2C12%2C1440%2C935&w=1080&fit=max" 
+                  alt="Apex Grid Starting Line" 
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" 
+                  referrerPolicy="no-referrer"
+                />
+              </div>
+              <div className="p-5">
+                <h4 className="font-black uppercase tracking-wide text-red-500 text-sm mb-1">Grid Starting Line</h4>
+                <p className="text-xs text-gray-400">Position 1-12 full-grid start with synchronized high-density LED race lights.</p>
+              </div>
+            </div>
+
+            <div className="group relative overflow-hidden rounded-2xl border border-gray-800 bg-gray-950 transition-all hover:border-red-600/50">
+              <div className="h-64 overflow-hidden relative">
+                <img 
+                  src="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/33/49/7f/86/put-the-pedal-to-the.jpg?w=900&h=500&s=1" 
+                  alt="High Speed Cornering" 
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" 
+                  referrerPolicy="no-referrer"
+                />
+              </div>
+              <div className="p-5">
+                <h4 className="font-black uppercase tracking-wide text-red-500 text-sm mb-1">Outer Sweeping Hairpins</h4>
+                <p className="text-xs text-gray-400">Master the late apex corners with wide run-offs designed to maintain momentum.</p>
+              </div>
+            </div>
+
+            <div className="group relative overflow-hidden rounded-2xl border border-gray-800 bg-gray-950 transition-all hover:border-red-600/50">
+              <div className="h-64 overflow-hidden relative">
+                <img 
+                  src="https://formulafunadventurepark.com/abilene/wp-content/uploads/2025/04/9N3A9986-copy.webp" 
+                  alt="Multi-heat Group Race Action" 
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" 
+                  referrerPolicy="no-referrer"
+                />
+              </div>
+              <div className="p-5">
+                <h4 className="font-black uppercase tracking-wide text-red-500 text-sm mb-1">Championship Main Arena</h4>
+                <p className="text-xs text-gray-400">High-speed straightaway culminating in professional safety barriers.</p>
+              </div>
+            </div>
+          </div>
         </div>
 
       </div>

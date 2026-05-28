@@ -4,14 +4,60 @@ import { ChefHat, Leaf, Flame, ShoppingBag, Clock, Users, ArrowRight, Star, Spli
 import { DatePicker } from '../components/DatePicker';
 
 const menuItems = [
-  { id: '1', name: 'Truffle Mac & Cheese', category: 'Starters', price: 4500, desc: 'Creamy blend of four cheeses with black truffle oil.', tags: ['v'], img: 'https://images.unsplash.com/photo-1543339308-43e59d6b73a6?w=400&q=80' },
-  { id: '2', name: 'Spicy Dynamite Shrimp', category: 'Starters', price: 5500, desc: 'Crispy shrimp tossed in our signature spicy mayo.', tags: ['s'], img: 'https://images.unsplash.com/photo-1559742811-822873691fc8?w=400&q=80' },
-  { id: '3', name: 'Wagyu Beef Burger', category: 'Mains', price: 9000, desc: '8oz Wagyu patty, caramelized onions, smoked gouda, brioche bun.', tags: [], img: 'https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=400&q=80' },
-  { id: '4', name: 'Pan-Seared Salmon', category: 'Mains', price: 12000, desc: 'Atlantic salmon with asparagus and lemon-butter sauce.', tags: [], img: 'https://images.unsplash.com/photo-1467003909585-2f8a72700288?w=400&q=80' },
-  { id: '5', name: 'Vegan Buddha Bowl', category: 'Mains', price: 6500, desc: 'Quinoa, roasted chickpeas, avocado, sweet potato, tahini.', tags: ['v'], img: 'https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=400&q=80' },
-  { id: '6', name: 'Fiery Jerk Chicken', category: 'Mains', price: 7500, desc: 'Authentic Jamaican jerk marinade, rice & peas, plantain.', tags: ['s'], img: 'https://images.unsplash.com/photo-1604908176997-125f25cc6f3d?w=400&q=80' },
-  { id: '7', name: 'Event Corporate Combo', category: 'Combos', price: 25000, desc: 'Feeds 4. Mixed grill platter, 4 sides, and a pitcher of lemonade.', tags: [], img: 'https://images.unsplash.com/photo-1555244162-803834f70033?w=400&q=80' },
-  { id: '8', name: 'Ultimate Feast Bundle', category: 'Combos', price: 45000, desc: 'Feeds 8. 2 Large Pizzas, 24 Wings, Garlic Bread, 3 Dips.', tags: [], img: 'https://images.unsplash.com/photo-1544025162-d76694265947?w=400&q=80' },
+  { 
+    id: '1', 
+    name: 'PentonRise Signature Jollof & Fried Rice Platter', 
+    category: 'Signature Dishes', 
+    price: 8500, 
+    desc: 'Rich, authentic smokey event Jollof rice & classic fried rice served with roasted chicken, sweet gold plantains, side salad, and gourmet moin moin.', 
+    tags: ['s'], 
+    img: 'https://150699480.cdn6.editmysite.com/uploads/1/5/0/6/150699480/7JRLQMYFDENG7FLRSQ5RYO3U.jpeg?width=1280&dpr=1' 
+  },
+  { 
+    id: '2', 
+    name: 'Luxury Ceremonial Banquet Special', 
+    category: 'Signature Dishes', 
+    price: 12500, 
+    desc: 'A sublime selection of custom local delicacies, tender seasoned premium protein, fried plantains, steamed savory puddings, and specialty fresh garden vegetables.', 
+    tags: [], 
+    img: 'https://150699480.cdn6.editmysite.com/uploads/1/5/0/6/150699480/5G6LHUKIXQLZD5OS5RPU2R5Z.jpeg?width=1280&dpr=1' 
+  },
+  { 
+    id: '3', 
+    name: 'Premium Spicy Grilled Beef Suya', 
+    category: 'Signature Dishes', 
+    price: 6000, 
+    desc: 'Authentic thin-sliced flame-grilled beef rubbed in hot, spicy traditional Yaji peanut-spice blend, topped with fresh sliced red onions and raw white cabbage.', 
+    tags: ['s'], 
+    img: 'https://thewheatbakerlagos.com/oatchace/2025/07/Suya-1024x653.webp' 
+  },
+  { 
+    id: '4', 
+    name: 'Traditional Steamed Moi Moi', 
+    category: 'Signature Dishes', 
+    price: 3500, 
+    desc: 'Hearty steamed savory bean pudding, beautifully aerated and seasoned with fresh sweet bell peppers, onions, and local aromatic oils.', 
+    tags: ['v'], 
+    img: 'https://thewheatbakerlagos.com/oatchace/2025/07/Moi-moi-by-Sisi-Jemimah-1024x602.webp' 
+  },
+  { 
+    id: '5', 
+    name: 'Chef\'s Special Assorted Delicacy Selection', 
+    category: 'Signature Dishes', 
+    price: 15000, 
+    desc: 'An exquisite curation of select roasted proteins, tender slow-cooked pieces, and sweet fried plantain bites ideal for festive corporate or wedding banquets.', 
+    tags: ['s'], 
+    img: 'https://lh3.googleusercontent.com/proxy/XH0JHIrgr1IWOtYfr3CJQ3cVAoxrsai7xxosrm4Y9aCSulbZRCpki1guKQjxTXQNDRQVnJFwwIILezHSYPjGH7bMSRmhRqF63BTAxtWaM9bQoM4yRqGUbNyiuvRivar-KKxDOMEyGRflLCY' 
+  },
+  { 
+    id: '6', 
+    name: 'Gourmet Ofada Rice & Ayamase Sauce Platter', 
+    category: 'Signature Dishes', 
+    price: 9500, 
+    desc: 'Aromatic native brown Ofada rice wrapped in green leaf, served with rich, spicy Ayamase bell pepper sauce cooked with palm oil, locust beans (iru), boil eggs, and mixed dynamic premium proteins.', 
+    tags: ['s'], 
+    img: 'https://thewheatbakerlagos.com/oatchace/2025/07/Ofada-Rice-1024x653.webp' 
+  }
 ];
 
 export default function FoodLounge() {
@@ -24,7 +70,7 @@ export default function FoodLounge() {
   const [isOrderPlaced, setIsOrderPlaced] = useState(false);
   const [splitPayment, setSplitPayment] = useState(false);
 
-  const categories = ['All', 'Starters', 'Mains', 'Combos'];
+  const categories = ['All', 'Signature Dishes'];
 
   const filteredMenu = menuItems.filter(item => {
     if (activeCategory !== 'All' && item.category !== activeCategory) return false;
@@ -55,11 +101,11 @@ export default function FoodLounge() {
       <div className="relative h-[50vh] flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0 w-full h-full">
           <img 
-            src="https://images.unsplash.com/photo-1514933651103-005eec06c04b?q=80&w=2000&auto=format&fit=crop" 
+            src="https://150699480.cdn6.editmysite.com/uploads/1/5/0/6/150699480/7JRLQMYFDENG7FLRSQ5RYO3U.jpeg?width=1280&dpr=1" 
             alt="Food Lounge" 
             className="w-full h-full object-cover"
           />
-          <div className="absolute inset-0 bg-burgundy/80 mix-blend-multiply" />
+          <div className="absolute inset-0 bg-burgundy/85 mix-blend-multiply" />
         </div>
         
         <div className="relative z-10 text-center px-4">
@@ -132,7 +178,7 @@ export default function FoodLounge() {
               {filteredMenu.map(item => (
                 <div key={item.id} className="bg-white rounded-2xl border border-gray-100 overflow-hidden shadow-sm hover:shadow-md transition-shadow group flex flex-col">
                   <div className="h-48 overflow-hidden relative">
-                    <img src={item.img} alt={item.name} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                    <img src={item.img} alt={item.name} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" referrerPolicy="no-referrer" />
                     <div className="absolute top-3 right-3 flex gap-2">
                       {item.tags.includes('v') && <span className="bg-green-500 text-white w-6 h-6 rounded-full flex items-center justify-center shadow-lg"><Leaf size={12} /></span>}
                       {item.tags.includes('s') && <span className="bg-red-500 text-white w-6 h-6 rounded-full flex items-center justify-center shadow-lg"><Flame size={12} /></span>}

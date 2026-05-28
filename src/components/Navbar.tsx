@@ -24,15 +24,9 @@ export default function Navbar() {
   const navLinks = [
     { name: 'Home', path: '/' },
     { name: 'Halls', path: '/halls' },
-    { name: 'Services', path: '/services' },
     { name: 'Gaming Lounge', path: '/gaming' },
-    { name: 'Hoverboard Arena', path: '/hoverboard' },
-    { name: 'Food Lounge', path: '/food-lounge' },
-    { name: 'Go Kart Arena', path: '/go-kart' },
-    { name: 'Availability', path: '/availability' },
-    { name: 'Gallery', path: '/gallery' },
+    { name: 'Go Kart', path: '/go-kart' },
     { name: 'Contact', path: '/contact' },
-    { name: 'Admin', path: '/admin' },
   ];
 
   return (

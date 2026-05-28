@@ -115,7 +115,7 @@ export default function Home() {
               transition={{ duration: 0.8, delay: 0.2 }}
               className="text-[16px] font-light mb-6 opacity-90 max-w-[400px]"
             >
-              Lagos' most prestigious venue for weddings, corporate galas, and bespoke private parties.
+              Oyo's most prestigious event center for weddings, corporate galas, and bespoke private parties.
             </motion.p>
             <motion.div 
               initial={{ opacity: 0, y: 30 }}
@@ -243,17 +243,13 @@ export default function Home() {
               initial={{ opacity: 0, x: 30 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
-              className="grid grid-cols-2 gap-4"
+              className="relative"
             >
               <img 
-                src="https://images.unsplash.com/photo-1555244162-803834f70033?w=500&auto=format&fit=crop&q=60" 
-                alt="Fine Dining" 
-                className="w-full h-48 object-cover rounded-xl"
-              />
-              <img 
-                src="https://images.unsplash.com/photo-1519167758481-83f550bb49b3?w=500&auto=format&fit=crop&q=60" 
-                alt="Event Decor" 
-                className="w-full h-48 object-cover rounded-xl mt-8"
+                src="https://b87f31a430949b7534f9.cdn6.editmysite.com/uploads/b/b87f31a430949b7534f9333568b975016e8b0febff59319fb8f9753b68978fcc/image%20%282%29%20%281%29_1727576397.png?width=2400&optimize=medium" 
+                alt="Exquisite Gourmet Catering and Wedding Setup Decor" 
+                className="w-full h-80 md:h-[350px] object-cover rounded-2xl shadow-lg border border-gray-100"
+                referrerPolicy="no-referrer"
               />
             </motion.div>
           </div>
@@ -328,9 +324,10 @@ export default function Home() {
               className="relative h-64 md:h-80 rounded-2xl overflow-hidden border border-cyan-500/20 shadow-[0_0_30px_rgba(34,211,238,0.15)]"
             >
               <img 
-                src="https://images.unsplash.com/photo-1541252260730-0412e8e2108e?w=800&auto=format&fit=crop&q=80" 
+                src="https://cdn.shopify.com/s/files/1/0605/4549/9286/files/ihoverboard_h1_hoverboard_8.jpg?v=1726034216" 
                 alt="Hoverboard Arena" 
                 className="w-full h-full object-cover"
+                referrerPolicy="no-referrer"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-slate-950 to-transparent flex items-end p-6">
                  <div className="text-cyan-400 font-mono font-bold animate-pulse text-sm flex items-center gap-2">
@@ -370,14 +367,16 @@ export default function Home() {
               className="grid grid-cols-2 gap-4 relative"
             >
               <img 
-                src="https://images.unsplash.com/photo-1514933651103-005eec06c04b?w=600&auto=format&fit=crop&q=80" 
-                alt="Food Lounge" 
+                src="https://150699480.cdn6.editmysite.com/uploads/1/5/0/6/150699480/7JRLQMYFDENG7FLRSQ5RYO3U.jpeg?width=1280&dpr=1" 
+                alt="PentonRise Signature Jollof & Fried Rice" 
                 className="w-full h-48 md:h-64 object-cover rounded-xl mt-8 shadow-md"
+                referrerPolicy="no-referrer"
               />
               <img 
-                src="https://images.unsplash.com/photo-1555244162-803834f70033?w=600&auto=format&fit=crop&q=80" 
-                alt="Gourmet Food" 
+                src="https://150699480.cdn6.editmysite.com/uploads/1/5/0/6/150699480/5G6LHUKIXQLZD5OS5RPU2R5Z.jpeg?width=1280&dpr=1" 
+                alt="Luxury Ceremonial Banquet" 
                 className="w-full h-48 md:h-64 object-cover rounded-xl shadow-md"
+                referrerPolicy="no-referrer"
               />
             </motion.div>
           </div>
@@ -395,9 +394,10 @@ export default function Home() {
               className="order-2 md:order-1 relative h-64 md:h-80 rounded-2xl overflow-hidden shadow-[0_0_30px_rgba(220,38,38,0.15)]"
             >
               <img 
-                src="https://images.unsplash.com/photo-1596700589139-4ddc6da155de?w=800&auto=format&fit=crop&q=80" 
-                alt="Apex Karting" 
+                src="https://formulafunadventurepark.com/abilene/wp-content/uploads/2025/04/9N3A9986-copy.webp" 
+                alt="Apex Karting Arena" 
                 className="w-full h-full object-cover"
+                referrerPolicy="no-referrer"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black to-transparent flex items-end p-6">
                  <div className="text-white bg-red-600 px-3 py-1 font-mono font-black animate-pulse text-sm">

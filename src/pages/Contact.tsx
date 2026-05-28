@@ -42,10 +42,18 @@ export default function Contact() {
                 </div>
                 <div>
                   <h3 className="font-bold text-burgundy text-lg mb-1">Our Location</h3>
-                  <p className="text-text-gray leading-relaxed">
-                    123 Event Center Blvd,<br />
-                    Metropolis, NY 10001
+                  <p className="text-text-gray leading-relaxed mb-2">
+                    Awolowo Way, near Oshuntokun Avenue,<br />
+                    Old Bodija, Ibadan, Oyo State
                   </p>
+                  <a 
+                    href="https://maps.app.goo.gl/x1R41NU9F1YqTKk66" 
+                    target="_blank" 
+                    rel="noopener noreferrer" 
+                    className="text-gold-dark hover:underline font-semibold text-sm inline-flex items-center gap-1"
+                  >
+                    View on Google Maps &rarr;
+                  </a>
                 </div>
               </div>
 

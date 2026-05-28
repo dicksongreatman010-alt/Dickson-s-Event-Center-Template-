@@ -225,9 +225,10 @@ export default function Services() {
             className="grid grid-cols-2 gap-4 relative h-[500px]"
           >
             <img 
-              src="https://images.unsplash.com/photo-1519167758481-83f550bb49b3?w=800&auto=format&fit=crop&q=80" 
+              src="https://b87f31a430949b7534f9.cdn6.editmysite.com/uploads/b/b87f31a430949b7534f9333568b975016e8b0febff59319fb8f9753b68978fcc/image%20%282%29%20%281%29_1727576397.png?width=2400&optimize=medium" 
               alt="Elegant Decor" 
               className="w-full h-[400px] object-cover rounded-xl"
+              referrerPolicy="no-referrer"
             />
             <div className="flex flex-col gap-4 pt-12">
               <img 

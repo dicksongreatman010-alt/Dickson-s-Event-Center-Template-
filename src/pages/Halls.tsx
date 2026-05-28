@@ -1,7 +1,79 @@
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'motion/react';
-import { Users, DollarSign, Check } from 'lucide-react';
-import { halls } from '../data/content';
+import { Users, DollarSign, Check, ChevronLeft, ChevronRight } from 'lucide-react';
+import { halls, Hall } from '../data/content';
+
+interface HallImageGalleryProps {
+  image: string;
+  images?: string[];
+  name: string;
+}
+
+function HallImageGallery({ image, images, name }: HallImageGalleryProps) {
+  const allImages = images && images.length > 0 ? images : [image];
+  const [currentIdx, setCurrentIdx] = useState(0);
+
+  if (allImages.length <= 1) {
+    return (
+      <img 
+        src={image} 
+        alt={name} 
+        className="w-full h-full object-cover"
+        referrerPolicy="no-referrer"
+      />
+    );
+  }
+
+  const nextImage = (e: React.MouseEvent) => {
+    e.preventDefault();
+    setCurrentIdx((prev) => (prev + 1) % allImages.length);
+  };
+
+  const prevImage = (e: React.MouseEvent) => {
+    e.preventDefault();
+    setCurrentIdx((prev) => (prev - 1 + allImages.length) % allImages.length);
+  };
+
+  return (
+    <div className="w-full h-full relative group min-h-[320px] lg:min-h-[450px]">
+      <img 
+        src={allImages[currentIdx]} 
+        alt={`${name} view ${currentIdx + 1}`} 
+        className="w-full h-full object-cover transition-all duration-500 ease-in-out absolute inset-0"
+        referrerPolicy="no-referrer"
+      />
+      
+      {/* Navigation Chevrons */}
+      <button 
+        onClick={prevImage}
+        className="absolute left-3 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/75 text-white p-2 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10 shadow-lg"
+        aria-label="Previous image"
+      >
+        <ChevronLeft size={20} />
+      </button>
+      <button 
+        onClick={nextImage}
+        className="absolute right-3 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/75 text-white p-2 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10 shadow-lg"
+        aria-label="Next image"
+      >
+        <ChevronRight size={20} />
+      </button>
+
+      {/* Thumbnails indicator bar */}
+      <div className="absolute bottom-4 left-0 right-0 flex justify-center gap-1.5 z-10 bg-gradient-to-t from-black/50 to-transparent py-2">
+        {allImages.map((_, idx) => (
+          <button
+            key={idx}
+            onClick={(e) => { e.preventDefault(); setCurrentIdx(idx); }}
+            className={`w-2.5 h-2.5 rounded-full transition-all duration-300 ${idx === currentIdx ? 'bg-gold w-6' : 'bg-white/60 hover:bg-white'}`}
+            aria-label={`Go to image ${idx + 1}`}
+          />
+        ))}
+      </div>
+    </div>
+  );
+}
 
 export default function Halls() {
   return (
@@ -36,11 +108,11 @@ export default function Halls() {
               className={`flex flex-col ${idx % 2 !== 0 ? 'lg:flex-row-reverse' : 'lg:flex-row'} bg-white rounded-2xl overflow-hidden border border-[#E2E8F0] shadow-[0_10px_25px_rgba(0,0,0,0.05)]`}
             >
               {/* Image Side */}
-              <div className="lg:w-1/2 h-80 lg:h-auto relative">
-                <img 
-                  src={hall.image} 
-                  alt={hall.name} 
-                  className="w-full h-full object-cover"
+              <div className="lg:w-1/2 relative min-h-[320px] lg:min-h-auto">
+                <HallImageGallery 
+                  image={hall.image} 
+                  images={hall.images} 
+                  name={hall.name} 
                 />
               </div>
 

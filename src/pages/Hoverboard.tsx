@@ -79,11 +79,12 @@ export default function Hoverboard() {
       <div className="relative h-[65vh] flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0 w-full h-full">
           <img 
-            src="https://images.unsplash.com/photo-1541252260730-0412e8e2108e?q=80&w=2000&auto=format&fit=crop" 
+            src="https://cdn.shopify.com/s/files/1/0605/4549/9286/files/ihoverboard_h1_hoverboard_8.jpg?v=1726034216" 
             alt="Hoverboard Arena" 
             className="w-full h-full object-cover"
+            referrerPolicy="no-referrer"
           />
-          <div className="absolute inset-0 bg-cyan-950/80 mix-blend-multiply" />
+          <div className="absolute inset-0 bg-cyan-950/75 mix-blend-multiply" />
           <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-transparent" />
         </div>
         
@@ -285,6 +286,51 @@ export default function Hoverboard() {
                 </div>
               </div>
 
+            </div>
+          </div>
+        </div>
+
+        {/* Hoverboard Arena Gallery & Action Highlights */}
+        <div className="mt-24 border-t border-slate-900 pt-16">
+          <div className="text-center mb-10">
+            <span className="text-cyan-400 font-bold tracking-[0.25em] uppercase text-xs block mb-2">Live Action & Experience</span>
+            <h2 className="text-3xl md:text-5xl font-black italic uppercase tracking-tighter text-white">
+              Zero-G <span className="text-cyan-500">Arena Highlights</span>
+            </h2>
+            <p className="text-slate-400 max-w-2xl mx-auto mt-3 text-sm font-light">
+              Catch a glimpse of the adrenaline, the neon glows, and the pure thrill of sprinting on our futuristic tracks. Safe for all experience levels with premium pro-grade gear.
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-2 gap-8">
+            <div className="group relative overflow-hidden rounded-2xl border border-slate-900 bg-slate-950 transition-all hover:border-cyan-500/30">
+              <div className="h-72 md:h-96 overflow-hidden relative">
+                <img 
+                  src="https://cdn.shopify.com/s/files/1/0605/4549/9286/files/ihoverboard_h1_hoverboard_8.jpg?v=1726034216" 
+                  alt="Neon Pro Hoverboard Control and Drift" 
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" 
+                  referrerPolicy="no-referrer"
+                />
+              </div>
+              <div className="p-6 bg-slate-900/60">
+                <h4 className="font-black uppercase tracking-wide text-cyan-400 text-sm mb-1">Precision Drift Core</h4>
+                <p className="text-xs text-slate-400">Pro-tuned smart gyroscopic stabilization sensors ensure quick, snappy response times on high-speed sweeps.</p>
+              </div>
+            </div>
+
+            <div className="group relative overflow-hidden rounded-2xl border border-slate-900 bg-slate-950 transition-all hover:border-cyan-500/30">
+              <div className="h-72 md:h-96 overflow-hidden relative">
+                <img 
+                  src="https://www.myrideo.com.au/cdn/shop/articles/Two_kids_playing_with_rideo_hoverboard.jpg?v=1720690119" 
+                  alt="Fun and family friendly hoverboard riding" 
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" 
+                  referrerPolicy="no-referrer"
+                />
+              </div>
+              <div className="p-6 bg-slate-900/60">
+                <h4 className="font-black uppercase tracking-wide text-cyan-400 text-sm mb-1">Friendly Arena Environment</h4>
+                <p className="text-xs text-slate-400">A community where riders of all ages learn, play, and safely compete with continuous safety supervisor monitoring.</p>
+              </div>
             </div>
           </div>
         </div>

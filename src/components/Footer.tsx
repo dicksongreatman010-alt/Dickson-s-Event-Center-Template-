@@ -11,8 +11,8 @@ export default function Footer() {
           {/* Brand */}
           <div className="space-y-4">
             <Logo light={true} />
-            <p className="text-white/70 text-sm leading-relaxed max-w-xs">
-              Lagos' most prestigious venue for weddings, corporate galas, and bespoke private parties.
+            <p className="text-white/70 text-sm leading-relaxed max-w-xs font-medium">
+              Oyo's most prestigious event center
             </p>
             <div className="flex items-center gap-4 pt-2">
               <a href="#" className="text-white/70 hover:text-gold transition-colors">
@@ -50,7 +50,24 @@ export default function Footer() {
             <ul className="space-y-4">
               <li className="flex items-start gap-3 text-white/70 text-sm">
                 <MapPin size={18} className="text-gold shrink-0 mt-0.5" />
-                <span>123 Event Center Blvd,<br />Metropolis, NY 10001</span>
+                <div>
+                  <a 
+                    href="https://maps.app.goo.gl/x1R41NU9F1YqTKk66" 
+                    target="_blank" 
+                    rel="noopener noreferrer" 
+                    className="hover:text-gold transition-colors block"
+                  >
+                    Awolowo Way, near Oshuntokun Avenue,<br />Old Bodija, Ibadan, Oyo State
+                  </a>
+                  <a 
+                    href="https://maps.app.goo.gl/x1R41NU9F1YqTKk66" 
+                    target="_blank" 
+                    rel="noopener noreferrer" 
+                    className="text-gold font-medium text-xs hover:underline mt-1 inline-block"
+                  >
+                    View on Google Maps &rarr;
+                  </a>
+                </div>
               </li>
               <li className="flex items-center gap-3 text-white/70 text-sm">
                 <Phone size={18} className="text-gold shrink-0" />
