@@ -1,6 +1,8 @@
 {
-  "name": "Eko Grandeur",
+  "name": "Pentonrise Event Center",
   "description": "A clean, fast, mobile-friendly website for an event center focused on bookings and inquiries.",
   "requestFramePermissions": [],
-  "majorCapabilities": []
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
 }
