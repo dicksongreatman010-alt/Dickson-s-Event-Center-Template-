@@ -395,7 +395,7 @@ export default function Home() {
             >
               <img 
                 src="https://formulafunadventurepark.com/abilene/wp-content/uploads/2025/04/9N3A9986-copy.webp" 
-                alt="Apex Karting Arena" 
+                alt="Go Kart Arena" 
                 className="w-full h-full object-cover"
                 referrerPolicy="no-referrer"
               />
@@ -413,7 +413,7 @@ export default function Home() {
               className="order-1 md:order-2 space-y-6"
             >
               <span className="text-gray-400 font-bold tracking-[0.2em] uppercase text-sm block">Thrill Seekers</span>
-              <h2 className="text-4xl font-black italic uppercase tracking-tighter text-white mb-4">Apex Karting <span className="text-red-600">Arena</span></h2>
+              <h2 className="text-4xl font-black italic uppercase tracking-tighter text-white mb-4">Go Kart <span className="text-red-600">Arena</span></h2>
               <p className="text-gray-300 leading-relaxed text-lg">
                 Push the limits on our multi-track circuit. Book individual and team endurance heats, monitor live telemetry, and prove you have what it takes to top the leaderboard.
               </p>

@@ -1,0 +1,78 @@
+c4f095fb69ae972aac7f13ff141fe01498fad9e2: Add files via upload by dicksongreatman010-alt
+49b2cac8a7b3af2ae40b66799b67309d08455e46: Add files via upload by dicksongreatman010-alt
+47d6e578bbb1e7d250e66f4d5647097e02fca28a: feat: update site content and contact details
+
+- Update contact information, addresses, and inquiry numbers.
+- Add new hall image assets and expand pricing/guidelines documentation.
+- Remove Stripe dependency.
+- Improve gallery layout responsiveness. by dicksongreatman010-alt
+b3551acef959d63416fc09ec6200f7f5eb8225a6: Add files via upload by dicksongreatman010-alt
+9fa011b64df074a13c86ac6b5698240df3294ee7: Add files via upload by dicksongreatman010-alt
+ee7f8fd25dfa3959944a9a5801bebced7b713a70: Delete assets by dicksongreatman010-alt
+4003660dbb449c7fdd685c570266318955cc72c1: Create assets by dicksongreatman010-alt
+3f866a13a9c10b1fe78c102c8aadbd004e15291e: chore: rebrand to Pentonrise Event Center
+
+Update metadata and email templates to reflect the new brand name, Pentonrise Event Center, and enable server-side Gemini API capability. by dicksongreatman010-alt
+a49ac172aeec37a2a57035b77ee97ff6da941e6f: refactor: update branding, venue location, and nav
+
+Update Eko Grandeur branding to reflect Oyo location, refine navigation links, and implement an image gallery feature for event halls. by dicksongreatman010-alt
+2f64c93430358b56df68d3aae9f6c0b8a443ef04: feat: rebrand to PentonRise and add new amenities
+
+Updated branding to PentonRise, adjusted the color palette to burgundy/gray, and integrated new pages for gaming, food, and recreational activities. by dicksongreatman010-alt
+7de7a24d06ecb6b23b14b84e87ac029ebac8dc1e: feat: Add Services page and integrate into app
+
+Introduces a new "Services" page to showcase event offerings like catering and decor.
+Updates the navigation bar and homepage to link to the new services page.
+Enhances the admin login functionality by adding a passcode for signup, improving security.
+Adds a new environment variable for the admin passcode. by dicksongreatman010-alt
+76cced261e47ad21137eabe0278c8f3982cdaff6: feat: Implement real-time booking updates
+
+Integrates Supabase real-time subscriptions to the Booking and Availability pages. This ensures that booked dates are updated instantly across the application when new bookings are made, improving the user experience by providing accurate availability information.
+
+Also, refactors the server-side inquiry handler to provide more specific error messages and makes Stripe/Resend client initialization more robust by returning null if keys are missing, rather than throwing an error immediately. by dicksongreatman010-alt
+e0707dec8f872ab88aafc0721a87a0454783b976: feat(admin): Implement admin authentication and booking checks
+
+Adds authentication to the admin page and modifies the booking service to exclude 'pending' status when checking for existing bookings. This ensures that only confirmed and deposit-paid bookings are considered when determining availability, preventing conflicts with bookings awaiting payment. by dicksongreatman010-alt
+8361bdc07a92dd230727250c667481e95491e8f2: feat: Add admin page and booking confirmation
+
+Introduce an Admin page to manage bookings and implement a confirmation modal for the booking form.
+
+The admin page allows viewing and updating booking statuses. The booking form now displays a modal for users to review and confirm their details before final submission. by dicksongreatman010-alt
+ef8c85cbfa231e679eec5fd29f6585c895b26b32: feat: Add Availability page and navigation
+
+Introduces a new Availability page allowing users to check hall availability and select dates.
+Updates the Navbar and App routing to include the new page.
+Enhances the Booking page to pre-fill hall and date from URL parameters and handles direct checkout flow. by dicksongreatman010-alt
+3b58188f0f79836b3532c8a8ec7e05b96f1b6f70: feat(DatePicker): Enhance disabled/booked day styling
+
+Improve the visual feedback for disabled and booked dates in the DatePicker component.
+
+Disabled dates now have a slightly higher opacity, and booked dates feature a distinct red background and text for better clarity. Additionally, a tooltip is added to indicate the reason for the date being disabled or booked. by dicksongreatman010-alt
+b6ae3beca53fc7a58392a0009ac84d540213e170: feat(booking): Integrate real-time booking availability and inquiry submission
+
+Fetches booked dates for a selected hall from Supabase to prevent double bookings.
+Submits new booking inquiries to the 'bookings' table, including all relevant details. by dicksongreatman010-alt
+0ba61373ca821c9e1b98636b73bbc65e81961586: feat: Integrate payment and email services
+
+Adds Stripe and Resend SDKs and initializes them using environment variables.
+Introduces a new route for booking success confirmation.
+Adds date picker component and hall availability checks to the booking form.
+Configures the server for handling booking inquiries and sending email notifications.
+Updates package.json to include necessary dependencies for date handling, payment, and email.
+Enhances the booking form to validate dates against hall availability and update submission logic.
+Updates the .env.example to include placeholders for Stripe and Resend API keys. by dicksongreatman010-alt
+908372589e48d577d0665fb56b7e886e9589d43c: feat(Contact): Improve layout and animations
+
+Refactors the contact page layout for better responsiveness and adds subtle entrance animations to content sections. Moves map embed to a separate component for cleaner structure. by dicksongreatman010-alt
+fbd8eac22ba266de4fceac37c1d244b14c26637e: feat: Integrate Supabase for backend services
+
+Adds Supabase client and environment variables for connecting to the backend database. This enables data storage and retrieval for event bookings and inquiries. by dicksongreatman010-alt
+b515e3270a2e24c024733843a6b6315f99123bd7: feat: Initialize Eko Grandeur website project
+
+Sets up the basic project structure and dependencies for the Eko Grandeur event center website. This includes:
+- Initializing React with Vite.
+- Configuring Tailwind CSS for styling.
+- Setting up basic routing for different pages.
+- Creating placeholder files and configurations for a frontend application.
+- Updating README and .gitignore for project management. by dicksongreatman010-alt
+f216b2a0b4052a939cc1bf913a12aca3c9c69f64: Initial commit by dicksongreatman010-alt

@@ -71,7 +71,7 @@ export default function GoKart() {
             animate={{ opacity: 1, y: 0 }}
             className="text-5xl md:text-8xl font-black italic uppercase tracking-tighter mb-6 text-transparent bg-clip-text bg-gradient-to-br from-white to-gray-500"
           >
-            Apex Karting
+            Go Kart
             <br />
             <span className="text-red-600">Arena</span>
           </motion.h1>
@@ -344,7 +344,7 @@ export default function GoKart() {
           <div className="text-center mb-10">
             <span className="text-red-500 font-extrabold tracking-[0.25em] uppercase text-xs block mb-2">The Circuit Layout</span>
             <h2 className="text-3xl md:text-5xl font-black italic uppercase tracking-tighter text-white">
-              Apex <span className="text-red-600">Circuit Highlights</span>
+              Go Kart <span className="text-red-600">Circuit Highlights</span>
             </h2>
             <p className="text-gray-400 max-w-2xl mx-auto mt-3 text-sm">
               Take a visual lap around our highly engineered indoor/outdoor standard track. Experience top cornering speeds, tight sweeping hairpins, and a long straightaway built for high G-forces.
@@ -356,7 +356,7 @@ export default function GoKart() {
               <div className="h-64 overflow-hidden relative">
                 <img 
                   src="https://images.prismic.io/teamsport/ZrSDskaF0TcGIxiz_TMD00181.png?auto=format%2Ccompress&rect=0%2C12%2C1440%2C935&w=1080&fit=max" 
-                  alt="Apex Grid Starting Line" 
+                  alt="Go Kart Grid Starting Line" 
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" 
                   referrerPolicy="no-referrer"
                 />
