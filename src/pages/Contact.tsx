@@ -43,8 +43,8 @@ export default function Contact() {
                 <div>
                   <h3 className="font-bold text-burgundy text-lg mb-1">Our Location</h3>
                   <p className="text-text-gray leading-relaxed mb-2">
-                    Awolowo Way, near Oshuntokun Avenue,<br />
-                    Old Bodija, Ibadan, Oyo State
+                    No. 1, Independence Square Awolowo Avenue,<br />
+                    Bodija Avenue, Ibadan, Oyo State
                   </p>
                   <a 
                     href="https://maps.app.goo.gl/x1R41NU9F1YqTKk66" 
@@ -62,9 +62,10 @@ export default function Contact() {
                   <Phone size={24} />
                 </div>
                 <div>
-                  <h3 className="font-bold text-burgundy text-lg mb-1">Phone Number</h3>
-                  <p className="text-text-gray mb-1">Main: <a href="tel:+1234567890" className="hover:text-gold transition-colors">+1 (234) 567-890</a></p>
-                  <p className="text-text-gray">Events: <a href="tel:+1987654321" className="hover:text-gold transition-colors">+1 (987) 654-321</a></p>
+                  <h3 className="font-bold text-burgundy text-lg mb-1">Phone Numbers</h3>
+                  <p className="text-text-gray mb-1">Office: <a href="tel:08023100931" className="hover:text-gold transition-colors">08023100931</a></p>
+                  <p className="text-text-gray mb-1">Events: <a href="tel:08144772056" className="hover:text-gold transition-colors">08144772056</a></p>
+                  <p className="text-text-gray">Inquiries: <a href="tel:08027401222" className="hover:text-gold transition-colors">08027401222</a></p>
                 </div>
               </div>
 
@@ -74,8 +75,7 @@ export default function Contact() {
                 </div>
                 <div>
                   <h3 className="font-bold text-burgundy text-lg mb-1">Email Address</h3>
-                  <p className="text-text-gray mb-1"><a href="mailto:info@pentonrise.com" className="hover:text-gold transition-colors">info@pentonrise.com</a></p>
-                  <p className="text-text-gray"><a href="mailto:bookings@pentonrise.com" className="hover:text-gold transition-colors">bookings@pentonrise.com</a></p>
+                  <p className="text-text-gray"><a href="mailto:pentonrisen@yahoo.com" className="hover:text-gold transition-colors">pentonrisen@yahoo.com</a></p>
                 </div>
               </div>
 

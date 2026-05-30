@@ -52,12 +52,12 @@ export default function Navbar() {
               </Link>
             ))}
             <div className="flex items-center ml-4">
-              <Link
-                to="/booking"
+              <a
+                href="tel:08023100931"
                 className="btn btn-gold !py-2 !px-4 !text-[12px]"
               >
-                Call: +234 800 200 100
-              </Link>
+                Call: 08023100931
+              </a>
             </div>
           </nav>
 
@@ -87,12 +87,12 @@ export default function Navbar() {
             </Link>
           ))}
           <div className="pt-4 flex flex-col gap-3">
-            <Link
-              to="/booking"
-              className="btn btn-gold w-full"
+            <a
+              href="tel:08023100931"
+              className="btn btn-gold w-full text-center"
             >
-              Call: +234 800 200 100
-            </Link>
+              Call: 08023100931
+            </a>
           </div>
         </div>
       )}

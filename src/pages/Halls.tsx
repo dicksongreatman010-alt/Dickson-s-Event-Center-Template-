@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'motion/react';
-import { Users, DollarSign, Check, ChevronLeft, ChevronRight } from 'lucide-react';
+import { Users, DollarSign, Check, ChevronLeft, ChevronRight, Shield, AlertCircle, Clock, Landmark } from 'lucide-react';
 import { halls, Hall } from '../data/content';
 
 interface HallImageGalleryProps {
@@ -164,6 +164,181 @@ export default function Halls() {
             </motion.div>
           ))}
         </div>
+
+        {/* Pricing & Guidelines Section */}
+        <motion.div 
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="mt-28 pt-20 border-t border-gray-200"
+        >
+          <div className="text-center max-w-3xl mx-auto mb-12">
+            <h2 className="text-3xl md:text-4xl font-bold text-burgundy mb-4">Complete Pricing & Venue Rules</h2>
+            <p className="text-text-gray">
+              Please review our official charges, supplementary bouncer plans, event logs, and facilities regulations.
+            </p>
+          </div>
+
+          {/* Pricing Table */}
+          <div className="bg-white rounded-2xl overflow-hidden border border-gray-200 shadow-md mb-12">
+            <div className="bg-burgundy px-6 py-4 text-white">
+              <h3 className="text-lg font-bold flex items-center gap-2">
+                <Landmark size={20} className="text-gold" />
+                Price List (VAT Inclusive)
+              </h3>
+            </div>
+            <div className="overflow-x-auto">
+              <table className="w-full text-left border-collapse">
+                <thead>
+                  <tr className="bg-slate-50 border-b border-gray-200 text-burgundy font-bold text-sm">
+                    <th className="py-4 px-6 w-16 text-center">SN</th>
+                    <th className="py-4 px-6">Facility</th>
+                    <th className="py-4 px-6">Capacity Options</th>
+                    <th className="py-4 px-6 text-right">Rates</th>
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-gray-100 text-sm text-text-gray">
+                  {[
+                    { sn: '01', name: 'ATINUKE HALL A (Fully Air Conditioned) with extension & Video Link', cap: '200 Seats (tables) or 250 Seats (without tables)', rate: '₦500,000.00' },
+                    { sn: '02', name: 'VICTORIA HALL B (Fully Air Conditioned)', cap: '60 Seats (with tables) or 80 Seats (without tables)', rate: '₦400,000.00' },
+                    { sn: '03', name: 'MEETING ROOM (Fully Air Conditioned)', cap: '40 Seats (with tables) or 50 Seats (without tables)', rate: '₦150,000.00' },
+                    { sn: '04', name: 'COMFORT ARINOLA HALL (Fully Air Conditioned)', cap: '800 Seats (with tables) or 1000 Seats (without tables)', rate: '₦1,500,000.00' },
+                    { sn: '05', name: 'GREEN CARPET CANOPY ONE', cap: '80 Seats (with tables) or 100 Seats (without tables)', rate: '₦200,000.00' },
+                    { sn: '06', name: 'GREEN CARPET CANOPY TWO', cap: '50 Seats (with tables) or 80 Seats (without tables)', rate: '₦150,000.00' },
+                  ].map((row, index) => (
+                    <tr key={index} className="hover:bg-slate-50/50 transition-colors">
+                      <td className="py-4 px-6 text-center font-mono font-bold text-burgundy">{row.sn}</td>
+                      <td className="py-4 px-6 font-semibold text-burgundy">{row.name}</td>
+                      <td className="py-4 px-6">{row.cap}</td>
+                      <td className="py-4 px-6 text-right font-mono font-bold text-burgundy text-base">{row.rate}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          {/* Guidelines Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
+            
+            {/* Left Column: Essential Rules */}
+            <div className="space-y-6">
+              <div className="bg-white p-6 rounded-2xl border border-gray-200 shadow-sm h-full">
+                <h3 className="text-lg font-bold text-burgundy mb-4 flex items-center gap-2">
+                  <AlertCircle size={20} className="text-gold" />
+                  Important Rules & Additional Information
+                </h3>
+                <ul className="space-y-4 text-sm text-text-gray">
+                  <li className="flex items-start gap-2.5">
+                    <span className="w-1.5 h-1.5 rounded-full bg-gold shrink-0 mt-2" />
+                    <div>
+                      <strong className="text-burgundy">Deposit Conditions:</strong>
+                      <p className="mt-0.5">Please note that all deposit payments are <span className="font-bold text-red-600">NOT REFUNDABLE</span>.</p>
+                    </div>
+                  </li>
+                  <li className="flex items-start gap-2.5">
+                    <span className="w-1.5 h-1.5 rounded-full bg-gold shrink-0 mt-2" />
+                    <div>
+                      <strong className="text-burgundy">Event Booking Duration:</strong>
+                      <p className="mt-0.5">Maximum of <b>6 hours</b> is allocated per booking (Standard slot windows are between <b>8:00 AM to 6:00 PM</b>).</p>
+                    </div>
+                  </li>
+                  <li className="flex items-start gap-2.5">
+                    <span className="w-1.5 h-1.5 rounded-full bg-gold shrink-0 mt-2" />
+                    <div>
+                      <strong className="text-burgundy">Payment Policy:</strong>
+                      <p className="mt-0.5">The full booking balance must be settled at least <span className="font-bold text-burgundy">14 days before</span> the event.</p>
+                    </div>
+                  </li>
+                  <li className="flex items-start gap-2.5">
+                    <span className="w-1.5 h-1.5 rounded-full bg-gold shrink-0 mt-2" />
+                    <div>
+                      <strong className="text-burgundy">Damage & Incident Fines:</strong>
+                      <ul className="list-disc pl-4 mt-1 space-y-2 text-xs">
+                        <li>Damage to structure, fixtures, or removing any effects attracts a <span className="font-bold text-red-600">₦10,000 fine</span>.</li>
+                        <li>Loss of a vehicle parking tally attracts a <span className="font-bold text-red-600">₦5,000 fine</span>.</li>
+                        <li>Climbing on chairs for decoration is prohibited and attracts a non-refundable caution fee.</li>
+                      </ul>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+            </div>
+
+            {/* Right Column: Surcharges, Extension, Service Providers & Extra Security */}
+            <div className="space-y-6">
+              <div className="bg-white p-6 rounded-2xl border border-gray-200 shadow-sm">
+                <h3 className="text-lg font-bold text-burgundy mb-4 flex items-center gap-2">
+                  <Clock size={20} className="text-gold" />
+                  Time Extensions & Logistics
+                </h3>
+                <ul className="space-y-4 text-sm text-text-gray">
+                  <li className="flex items-start gap-2.5">
+                    <span className="w-1.5 h-1.5 rounded-full bg-gold shrink-0 mt-2" />
+                    <div>
+                      <strong className="text-burgundy">Extension Overtime Fee:</strong>
+                      <p className="mt-0.5 text-red-600 font-bold">₦200,000.00 per hour (strictly non-negotiable).</p>
+                    </div>
+                  </li>
+                  <li className="flex items-start gap-2.5">
+                    <span className="w-1.5 h-1.5 rounded-full bg-gold shrink-0 mt-2" />
+                    <div>
+                      <strong className="text-burgundy">Security & General Protection:</strong>
+                      <p className="mt-0.5">Cars are parked at owner&apos;s risk in our spacious lot. Guests (Musicians/DJs) are required to bring their own generator of sufficient power capacity. No loitering is allowed surrounding the premises.</p>
+                    </div>
+                  </li>
+                  <li className="flex items-start gap-2.5">
+                    <span className="w-1.5 h-1.5 rounded-full bg-gold shrink-0 mt-2" />
+                    <div>
+                      <strong className="text-burgundy">Caterers & Decorators:</strong>
+                      <p className="mt-0.5">External service teams are required to pay a refundable caution fee:</p>
+                      <ul className="list-disc pl-4 mt-1 space-y-1 text-xs">
+                        <li>Caterers logistics: <span className="font-semibold text-burgundy">₦5,000 refundable fee</span></li>
+                        <li>Decorators logistics: <span className="font-semibold text-burgundy">₦10,000 refundable fee</span></li>
+                      </ul>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+
+              {/* Extra Security Options */}
+              <div className="bg-slate-900 text-white p-6 rounded-2xl border border-slate-800 shadow-md">
+                <h3 className="text-lg font-bold text-gold mb-3 flex items-center gap-2">
+                  <Shield size={20} className="text-gold" />
+                  Extra Security (Optional - Not included)
+                </h3>
+                <p className="text-slate-400 text-xs mb-4">
+                  Require premium dedicated staff for your VIP event or high crowd level? Add expert support:
+                </p>
+                <div className="grid grid-cols-2 gap-4">
+                  <div className="bg-slate-800 p-4 rounded-xl border border-slate-705">
+                    <p className="text-slate-400 text-[11px] font-bold uppercase tracking-wider">Expert Bouncers</p>
+                    <p className="text-xl font-bold text-gold mt-1">₦20,000</p>
+                    <p className="text-slate-450 text-[11px] mt-0.5">per head</p>
+                  </div>
+                  <div className="bg-slate-800 p-4 rounded-xl border border-slate-705">
+                    <p className="text-slate-400 text-[11px] font-bold uppercase tracking-wider">Traffic Marshalls</p>
+                    <p className="text-xl font-bold text-gold mt-1">₦1,000</p>
+                    <p className="text-slate-450 text-[11px] mt-0.5">per head (as needed)</p>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+
+          </div>
+
+          <div className="bg-gold-light/20 border border-gold/30 rounded-2xl p-6 text-center">
+            <h4 className="font-bold text-burgundy mb-2">Ready to secure your event space?</h4>
+            <p className="text-sm text-text-gray mb-4 max-w-xl mx-auto">
+              Fill out the convenient booking details, choose your preferred hall, and check calendar date availability instantly.
+            </p>
+            <Link to="/booking" className="btn btn-gold px-8 py-3 font-semibold uppercase tracking-wide text-xs">
+              Go to Booking Inquiry
+            </Link>
+          </div>
+
+        </motion.div>
 
       </div>
     </div>

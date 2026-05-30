@@ -57,7 +57,7 @@ export default function Footer() {
                     rel="noopener noreferrer" 
                     className="hover:text-gold transition-colors block"
                   >
-                    Awolowo Way, near Oshuntokun Avenue,<br />Old Bodija, Ibadan, Oyo State
+                    No. 1, Independence Square Awolowo Avenue,<br />Bodija Avenue, Ibadan, Oyo State
                   </a>
                   <a 
                     href="https://maps.app.goo.gl/x1R41NU9F1YqTKk66" 
@@ -69,13 +69,15 @@ export default function Footer() {
                   </a>
                 </div>
               </li>
-              <li className="flex items-center gap-3 text-white/70 text-sm">
-                <Phone size={18} className="text-gold shrink-0" />
-                <a href="tel:+1234567890" className="hover:text-white transition-colors">+1 (234) 567-890</a>
+              <li className="flex flex-col gap-1 text-white/70 text-sm pl-7 relative">
+                <Phone size={18} className="text-gold absolute left-0 top-0.5" />
+                <a href="tel:08023100931" className="hover:text-white transition-colors">08023100931</a>
+                <a href="tel:08144772056" className="hover:text-white transition-colors">08144772056</a>
+                <a href="tel:08027401222" className="hover:text-white transition-colors">08027401222</a>
               </li>
               <li className="flex items-center gap-3 text-white/70 text-sm">
                 <Mail size={18} className="text-gold shrink-0" />
-                <a href="mailto:info@pentonrise.com" className="hover:text-white transition-colors">info@pentonrise.com</a>
+                <a href="mailto:pentonrisen@yahoo.com" className="hover:text-white transition-colors">pentonrisen@yahoo.com</a>
               </li>
             </ul>
           </div>

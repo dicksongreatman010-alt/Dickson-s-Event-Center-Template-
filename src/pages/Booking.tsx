@@ -184,11 +184,9 @@ export default function Booking() {
       }
       
       if (checkoutParam) {
-        if (newBookingId) {
-          window.location.href = `/payment?bookingId=${newBookingId}&amount=500000`;
-        } else {
-          await handleDeposit();
-        }
+        const amount = getHallPriceAsNumber(formData.hall);
+        const bid = newBookingId || 'booking_' + Math.random().toString(36).substring(2, 9);
+        window.location.href = `/payment?bookingId=${bid}&amount=${amount}`;
       } else {
         setIsSubmitted(true);
       }
@@ -200,32 +198,20 @@ export default function Booking() {
     }
   };
 
+  const getHallPriceAsNumber = (hallId: string) => {
+    const hall = halls.find(h => h.id === hallId);
+    if (!hall) return 500000;
+    const numericString = hall.priceRange.replace(/[^0-9]/g, '');
+    const val = parseInt(numericString, 10);
+    if (isNaN(val)) return 500000;
+    return Math.floor(val / 100);
+  };
+
   const handleDeposit = async () => {
     setIsLoading(true);
-    if (bookingId) {
-      window.location.href = `/payment?bookingId=${bookingId}&amount=500000`;
-      return;
-    }
-    
-    try {
-      const selectedHallName = halls.find(h => h.id === formData.hall)?.name || formData.hall;
-      const response = await fetch('/api/checkout', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ name: formData.name, date: formData.date, hall: selectedHallName }),
-      });
-      
-      const data = await response.json();
-      if (data.url) {
-        window.location.href = data.url;
-      } else {
-        throw new Error('Failed to create checkout session');
-      }
-    } catch (err: any) {
-      console.error(err);
-      alert('Failed to initiate payment. Please try again later.');
-      setIsLoading(false);
-    }
+    const amount = getHallPriceAsNumber(formData.hall);
+    const bid = bookingId || 'booking_' + Math.random().toString(36).substring(2, 9);
+    window.location.href = `/payment?bookingId=${bid}&amount=${amount}`;
   };
 
   if (isSubmitted) {
@@ -233,7 +219,7 @@ export default function Booking() {
     const allDates = getRecurringDates();
     const datesStr = formData.isRecurring ? `${allDates.length} occurrences (${formData.recurringType}): ${allDates.join(', ')}` : formData.date;
     const waMessage = `New Booking Inquiry%0A%0AName: ${formData.name}%0APhone: ${formData.phone}%0AEmail: ${formData.email}%0AEvent: ${formData.eventType}%0AGuests: ${formData.guests}%0ADate: ${datesStr}%0AHall: ${selectedHallName}%0AMessage: ${formData.message}`;
-    const waUrl = `https://wa.me/1234567890?text=${waMessage}`;
+    const waUrl = `https://wa.me/2348023100931?text=${waMessage}`;
 
     return (
       <div className="min-h-[70vh] flex items-center justify-center px-4">
@@ -255,7 +241,7 @@ export default function Booking() {
               disabled={isLoading}
               className="btn bg-burgundy text-white hover:bg-burgundy-light w-full"
             >
-              {isLoading ? 'Processing...' : 'Secure Date with $500 Deposit'}
+              {isLoading ? 'Processing...' : 'Secure Date with Deposit'}
             </button>
             <a 
               href={waUrl}

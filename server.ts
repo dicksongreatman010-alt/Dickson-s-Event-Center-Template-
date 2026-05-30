@@ -2,7 +2,6 @@ import express from "express";
 import { createServer as createViteServer } from "vite";
 import path from "path";
 import { fileURLToPath } from "url";
-import Stripe from "stripe";
 import { Resend } from "resend";
 
 const __filename = fileURLToPath(import.meta.url);
@@ -16,17 +15,6 @@ async function startServer() {
   app.use(express.json());
 
   // === SDK Initialization (Lazy) ===
-  let stripeClient: Stripe | null = null;
-  function getStripe() {
-    if (!stripeClient) {
-      const key = process.env.STRIPE_SECRET_KEY;
-      if (!key) return null;
-      // Using latest API version
-      stripeClient = new Stripe(key);
-    }
-    return stripeClient;
-  }
-
   let resendClient: Resend | null = null;
   function getResend() {
     if (!resendClient) {
@@ -205,51 +193,6 @@ async function startServer() {
     } catch (error: any) {
       console.error("Email Error:", error);
       res.status(500).json({ error: error.message || "Failed to send email" });
-    }
-  });
-
-  // Handle deposit creation via Stripe Checkout
-  app.post("/api/checkout", async (req, res) => {
-    try {
-      const { name, date, hall } = req.body;
-      const stripe = getStripe();
-
-      if (!stripe) {
-        console.log("-----------------------------------------");
-        console.log("Mock Stripe Checkout (STRIPE_SECRET_KEY missing):");
-        console.log(`Hold Deposit - ${hall} for ${name} on ${date}`);
-        console.log("-----------------------------------------");
-        // Return a mock success URL skipping Stripe checkout
-        return res.json({ url: `${process.env.APP_URL || "http://localhost:3000"}/booking-success?session_id=mock_session_123` });
-      }
-
-      // Calculate deposit (e.g., $500 flat deposit for securing the hall)
-      const depositAmount = 50000; // $500 in cents
-
-      const session = await stripe.checkout.sessions.create({
-        payment_method_types: ["card"],
-        line_items: [
-          {
-            price_data: {
-              currency: "usd",
-              product_data: {
-                name: `Hold Deposit - ${hall}`,
-                description: `Event date: ${date} | Reserved by: ${name}`,
-              },
-              unit_amount: depositAmount,
-            },
-            quantity: 1,
-          },
-        ],
-        mode: "payment",
-        success_url: `${process.env.APP_URL || "http://localhost:3000"}/booking-success`,
-        cancel_url: `${process.env.APP_URL || "http://localhost:3000"}/booking`,
-      });
-
-      res.json({ url: session.url });
-    } catch (error: any) {
-      console.error("Stripe Error:", error);
-      res.status(500).json({ error: error.message || "Failed to create checkout session" });
     }
   });
 

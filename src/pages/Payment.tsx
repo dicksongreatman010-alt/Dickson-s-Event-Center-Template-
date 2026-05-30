@@ -13,7 +13,7 @@ export default function Payment() {
 
   const bankDetails = {
     bankName: "Guaranty Trust Bank (GTB)",
-    accountName: "Royal Events & Gaming",
+    accountName: "PentonRise Event Center",
     accountNumber: "0123456789"
   };
 
