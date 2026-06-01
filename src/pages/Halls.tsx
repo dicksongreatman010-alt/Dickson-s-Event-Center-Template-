@@ -202,7 +202,7 @@ export default function Halls() {
                     { sn: '01', name: 'ATINUKE HALL A (Fully Air Conditioned) with extension & Video Link', cap: '200 Seats (tables) or 250 Seats (without tables)', rate: '₦500,000.00' },
                     { sn: '02', name: 'VICTORIA HALL B (Fully Air Conditioned)', cap: '60 Seats (with tables) or 80 Seats (without tables)', rate: '₦400,000.00' },
                     { sn: '03', name: 'MEETING ROOM (Fully Air Conditioned)', cap: '40 Seats (with tables) or 50 Seats (without tables)', rate: '₦150,000.00' },
-                    { sn: '04', name: 'COMFORT ARINOLA HALL (Fully Air Conditioned)', cap: '800 Seats (with tables) or 1000 Seats (without tables)', rate: '₦1,500,000.00' },
+                    { sn: '04', name: 'COMFORT ARINOLA HALL (Fully Air Conditioned)', cap: '500 Seats (with tables) or 1000 Seats (without tables)', rate: '₦1,500,000.00' },
                     { sn: '05', name: 'GREEN CARPET CANOPY ONE', cap: '80 Seats (with tables) or 100 Seats (without tables)', rate: '₦200,000.00' },
                     { sn: '06', name: 'GREEN CARPET CANOPY TWO', cap: '50 Seats (with tables) or 80 Seats (without tables)', rate: '₦150,000.00' },
                   ].map((row, index) => (
@@ -241,6 +241,13 @@ export default function Halls() {
                     <div>
                       <strong className="text-burgundy">Event Booking Duration:</strong>
                       <p className="mt-0.5">Maximum of <b>6 hours</b> is allocated per booking (Standard slot windows are between <b>8:00 AM to 6:00 PM</b>).</p>
+                    </div>
+                  </li>
+                  <li className="flex items-start gap-2.5">
+                    <span className="w-1.5 h-1.5 rounded-full bg-gold shrink-0 mt-2" />
+                    <div>
+                      <strong className="text-burgundy">Convenience & Changing Rooms:</strong>
+                      <p className="mt-0.5">Every primary hall at Pentonrise Event Center is equipped with an upscale, private dressing/changing room for the comfort of celebrants, hosts, and VIP guests.</p>
                     </div>
                   </li>
                   <li className="flex items-start gap-2.5">

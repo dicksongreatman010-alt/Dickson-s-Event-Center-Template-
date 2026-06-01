@@ -199,9 +199,9 @@ export default function Home() {
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-6">
             {[
-              { title: 'Prime Location', desc: 'Easily accessible with ample secure parking for all your guests.' },
-              { title: 'Premium Catering', desc: 'World-class culinary team to craft the perfect menu for your event.' },
-              { title: 'Expert Planning', desc: 'Dedicated event coordinators to ensure everything runs flawlessly.' }
+              { title: 'Prime Location', desc: 'Easily accessible layout with ample, well-paved, and secure gated parking space.' },
+              { title: 'Exclusive Comfort', desc: 'Fully air-conditioned halls styled with vibrant box branding and private, comfortable changing/dressing rooms.' },
+              { title: 'Tailored Services', desc: 'Bespoke venue decor, modern facilities, and top-tier local and continental catering.' }
             ].map((feature, idx) => (
               <motion.div 
                 key={idx}

@@ -15,7 +15,7 @@ const victoriaHallB = 'https://res.cloudinary.com/dojayb3ro/image/upload/f_auto,
 
 const greenCarpet = 'https://res.cloudinary.com/dojayb3ro/image/upload/f_auto,q_auto/v1/pentonrise/greenCarpet';
 const radiantDrapery = 'https://res.cloudinary.com/dojayb3ro/image/upload/f_auto,q_auto/v1/pentonrise/radiantDrapery';
-const meetingRoomImage = pentonImage2;
+const meetingRoomImage = 'https://res.cloudinary.com/dojayb3ro/image/upload/f_auto,q_auto/v1/pentonrise/victoriaHallB3';
 
 // Comfort Arinola Hall Uploads
 const comfortArinola1 = 'https://res.cloudinary.com/dojayb3ro/image/upload/f_auto,q_auto/v1/pentonrise/comfortArinola1';
@@ -61,7 +61,7 @@ export const halls: Hall[] = [
   {
     id: 'comfort-arinola',
     name: 'Comfort Arinola Hall',
-    capacity: '800 Seats (with tables) or 1000 Seats (without tables)',
+    capacity: '500 Seats (with tables) or 1000 Seats (without tables)',
     priceRange: '₦1,500,000.00',
     shortDescription: 'Our largest, fully air-conditioned space, perfect for grand weddings and large corporate galas. Featuring ample room for your biggest events.',
     image: pentonImage3,
@@ -78,7 +78,7 @@ export const halls: Hall[] = [
       comfortArinola5,
       comfortArinola6
     ],
-    features: ['Full Air-Conditioned', 'Orange Box Styling', 'Large Capacity', 'Flexible Layouts', 'VAT Inclusive']
+    features: ['Full Air-Conditioned', 'Orange Box Styling', 'Large Capacity', 'Flexible Layouts', 'Private Changing Room', 'VAT Inclusive']
   },
   {
     id: 'atinuke-hall',
@@ -95,7 +95,7 @@ export const halls: Hall[] = [
       atinukeHallA2,
       atinukeHallA3
     ],
-    features: ['Full Air-Conditioned', 'Purple Box Styling', 'With Extension & Video Link', 'Perfect for Mid-Size', 'VAT Inclusive']
+    features: ['Full Air-Conditioned', 'Purple Box Styling', 'With Extension & Video Link', 'Private Changing Room', 'Perfect for Mid-Size', 'VAT Inclusive']
   },
   {
     id: 'victoria-hall',
@@ -111,7 +111,7 @@ export const halls: Hall[] = [
       victoriaHallB3,
       victoriaHallB4
     ],
-    features: ['Full Air-Conditioned', 'Yellow Box Styling', 'Private Atmosphere', 'Meeting Ready', 'VAT Inclusive']
+    features: ['Full Air-Conditioned', 'Yellow Box Styling', 'Private Atmosphere', 'Private Changing Room', 'Meeting Ready', 'VAT Inclusive']
   },
   {
     id: 'meeting-room',
