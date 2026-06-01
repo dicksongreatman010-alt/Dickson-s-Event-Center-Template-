@@ -8,7 +8,7 @@ export default function Gallery() {
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
 
   // Extract unique categories (plus 'All')
-  const categories = ['All', 'Comfort Arinola Hall', 'Atinuke Hall', 'Victoria Hall B', 'Green Carpet Area'];
+  const categories = ['All', 'Comfort Arinola Hall', 'Atinuke Hall', 'Victoria Hall B', 'Green Carpet Area', 'Exterior & Parking'];
 
   // Filter images based on selected tab
   const filteredImages = selectedFilter === 'All' 

@@ -9,7 +9,7 @@ export default function Logo({ className = "", light = false }: LogoProps) {
   const textColor = light ? "text-white" : "text-burgundy";
   const strokeColor = light ? "#FFFFFF" : "#3E060F";
 
-  const logoUrl = "https://raw.githubusercontent.com/dicksongreatman010-alt/Dickson-s-Event-Center-Template-/main/Gemini_Generated_Image_rz6kd2rz6kd2rz6k%20(1).png";
+  const logoUrl = "https://res.cloudinary.com/dojayb3ro/image/upload/f_auto,q_auto/v1/pentonrise/logo";
 
   return (
     <Link to="/" className={`flex items-center gap-2 group ${className}`}>

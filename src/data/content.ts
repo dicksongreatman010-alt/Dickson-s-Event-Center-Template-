@@ -1,19 +1,50 @@
-const comfortArinola = 'https://lh3.googleusercontent.com/gps-cs-s/APNQkAFNHmbvAF2erJ1sujVtaAzV4_dzeSe_dzgObpu8o8Au5ecxtVyHs5qbWi46CcW9FV0AHXi9gcXVIX9h8ver8DeCvwkiiVuW74E_hKFaMAANObglZtxiz0I1mxVZ-1FIZEkS5roE=s516-k-no';
-const atinukeHallNew = 'https://raw.githubusercontent.com/dicksongreatman010-alt/Dickson-s-Event-Center-Template-/main/Pentonrise/WhatsApp%20Image%202026-05-30%20at%207.01.54%20AM%20(1).jpeg';
-const pentonImage1 = 'https://raw.githubusercontent.com/dicksongreatman010-alt/Dickson-s-Event-Center-Template-/main/Pentonrise/WhatsApp%20Image%202026-05-30%20at%207.01.54%20AM%20(2).jpeg';
-const pentonImage2 = 'https://raw.githubusercontent.com/dicksongreatman010-alt/Dickson-s-Event-Center-Template-/main/Pentonrise/WhatsApp%20Image%202026-05-30%20at%207.01.54%20AM.jpeg';
-const pentonImage3 = 'https://raw.githubusercontent.com/dicksongreatman010-alt/Dickson-s-Event-Center-Template-/main/Pentonrise/WhatsApp%20Image%202026-05-30%20at%207.01.55%20AM%20(1).jpeg';
-const pentonImage4 = 'https://raw.githubusercontent.com/dicksongreatman010-alt/Dickson-s-Event-Center-Template-/main/Pentonrise/WhatsApp%20Image%202026-05-30%20at%207.01.55%20AM%20(2).jpeg';
-const pentonImage5 = 'https://raw.githubusercontent.com/dicksongreatman010-alt/Dickson-s-Event-Center-Template-/main/Pentonrise/WhatsApp%20Image%202026-05-30%20at%207.01.55%20AM.jpeg';
-const pentonImage6 = 'https://raw.githubusercontent.com/dicksongreatman010-alt/Dickson-s-Event-Center-Template-/main/Pentonrise/WhatsApp%20Image%202026-05-30%20at%207.13.21%20AM%20(2).jpeg';
-const pentonImage7 = 'https://raw.githubusercontent.com/dicksongreatman010-alt/Dickson-s-Event-Center-Template-/main/Pentonrise/WhatsApp%20Image%202026-05-30%20at%207.13.21%20AM.jpeg';
-const pentonImage8 = 'https://raw.githubusercontent.com/dicksongreatman010-alt/Dickson-s-Event-Center-Template-/main/Pentonrise/uy.jpeg';
+const comfortArinola = 'https://res.cloudinary.com/dojayb3ro/image/upload/f_auto,q_auto/v1/pentonrise/comfortArinola';
+const atinukeHallNew = 'https://res.cloudinary.com/dojayb3ro/image/upload/f_auto,q_auto/v1/pentonrise/atinukeHallNew';
+const pentonImage1 = 'https://res.cloudinary.com/dojayb3ro/image/upload/f_auto,q_auto/v1/pentonrise/pentonImage1';
+const pentonImage2 = 'https://res.cloudinary.com/dojayb3ro/image/upload/f_auto,q_auto/v1/pentonrise/pentonImage2';
+const pentonImage3 = 'https://res.cloudinary.com/dojayb3ro/image/upload/f_auto,q_auto/v1/pentonrise/pentonImage3';
+const pentonImage4 = 'https://res.cloudinary.com/dojayb3ro/image/upload/f_auto,q_auto/v1/pentonrise/pentonImage4';
+const pentonImage5 = 'https://res.cloudinary.com/dojayb3ro/image/upload/f_auto,q_auto/v1/pentonrise/pentonImage5';
+const pentonImage6 = 'https://res.cloudinary.com/dojayb3ro/image/upload/f_auto,q_auto/v1/pentonrise/pentonImage6';
+const pentonImage7 = 'https://res.cloudinary.com/dojayb3ro/image/upload/f_auto,q_auto/v1/pentonrise/pentonImage7';
+const pentonImage8 = 'https://res.cloudinary.com/dojayb3ro/image/upload/f_auto,q_auto/v1/pentonrise/pentonImage8';
 
-const atinukeHall1 = 'https://lh3.googleusercontent.com/gps-cs-s/APNQkAGpBU-eomLmuKAsQsXGt-VvtZDnmADWW70-aXbYfJHS3tBT2xxqe9TNEPaqagUabavHWHGC83UVndnKwnAveN_vfhB1qzYqF8HcbKOz8pDnrrj6axY7Ub5LQC8s8glQhhUbWRBOUA=s644-k-no';
-const victoriaHall = 'https://lh3.googleusercontent.com/gps-cs-s/APNQkAH9Yr5nFwH6g9DmwqfbwP41yFRZ3mexn78m5XRV6zSvnHVxQiTiSmT7eYbyXQT_MWG0o1wyVNbjsFF_DZkfgIZ-ngBXSKOk8rkQAobsIuR96kYKQTtnr6YeZOr74-bOTkoWvTbAgg=s644-k-no';
+const atinukeHall1 = 'https://res.cloudinary.com/dojayb3ro/image/upload/f_auto,q_auto/v1/pentonrise/atinukeHall1';
+const victoriaHall = 'https://res.cloudinary.com/dojayb3ro/image/upload/f_auto,q_auto/v1/pentonrise/victoriaHall';
+const victoriaHallB = 'https://res.cloudinary.com/dojayb3ro/image/upload/f_auto,q_auto/v1/pentonrise/victoriaHallB';
 
-const greenCarpet = 'https://lh3.googleusercontent.com/gps-cs-s/APNQkAGgqjDRymqyFtEAu2KCFKTEZsMqrugDL1FGzDIMoPnfQcarBGYyqqq5MIUoebLm4tjzj9YFTftV6NxkgJUXZRRYB0f0jMBFT3RW_i4aJ6PhJBV4gf-pPLy8Kws_3_IDRSwQADk=s644-k-no';
+const greenCarpet = 'https://res.cloudinary.com/dojayb3ro/image/upload/f_auto,q_auto/v1/pentonrise/greenCarpet';
+const radiantDrapery = 'https://res.cloudinary.com/dojayb3ro/image/upload/f_auto,q_auto/v1/pentonrise/radiantDrapery';
 const meetingRoomImage = pentonImage2;
+
+// Comfort Arinola Hall Uploads
+const comfortArinola1 = 'https://res.cloudinary.com/dojayb3ro/image/upload/f_auto,q_auto/v1/pentonrise/comfortArinola1';
+const comfortArinola2 = 'https://res.cloudinary.com/dojayb3ro/image/upload/f_auto,q_auto/v1/pentonrise/comfortArinola2';
+const comfortArinola3 = 'https://res.cloudinary.com/dojayb3ro/image/upload/f_auto,q_auto/v1/pentonrise/comfortArinola3';
+const comfortArinola4 = 'https://res.cloudinary.com/dojayb3ro/image/upload/f_auto,q_auto/v1/pentonrise/comfortArinola4';
+const comfortArinola5 = 'https://res.cloudinary.com/dojayb3ro/image/upload/f_auto,q_auto/v1/pentonrise/comfortArinola5';
+const comfortArinola6 = 'https://res.cloudinary.com/dojayb3ro/image/upload/f_auto,q_auto/v1/pentonrise/comfortArinola6';
+
+// Atinuke Hall A Uploads
+const atinukeHallA = 'https://res.cloudinary.com/dojayb3ro/image/upload/f_auto,q_auto/v1/pentonrise/atinukeHallA';
+const atinukeHallA2 = 'https://res.cloudinary.com/dojayb3ro/image/upload/f_auto,q_auto/v1/pentonrise/atinukeHallA2';
+const atinukeHallA3 = 'https://res.cloudinary.com/dojayb3ro/image/upload/f_auto,q_auto/v1/pentonrise/atinukeHallA3';
+
+// Green Carpet Area Uploads
+const greenCarpetArea1 = 'https://res.cloudinary.com/dojayb3ro/image/upload/f_auto,q_auto/v1/pentonrise/greenCarpetArea1';
+
+// Outside & Parking lot Uploads
+const outsideView = 'https://res.cloudinary.com/dojayb3ro/image/upload/f_auto,q_auto/v1/pentonrise/outsideView';
+const outsideView2 = 'https://res.cloudinary.com/dojayb3ro/image/upload/f_auto,q_auto/v1/pentonrise/outsideView2';
+const parkingLotExtended = 'https://res.cloudinary.com/dojayb3ro/image/upload/f_auto,q_auto/v1/pentonrise/parkingLotExtended';
+const parkingLotMerged = 'https://res.cloudinary.com/dojayb3ro/image/upload/f_auto,q_auto/v1/pentonrise/parkingLotMerged';
+const parkingLotJpeg = 'https://res.cloudinary.com/dojayb3ro/image/upload/f_auto,q_auto/v1/pentonrise/parkingLotJpeg';
+const parkingLotJpg = 'https://res.cloudinary.com/dojayb3ro/image/upload/f_auto,q_auto/v1/pentonrise/parkingLotJpg';
+
+// Victoria Hall B Uploads
+const victoriaHallB2 = 'https://res.cloudinary.com/dojayb3ro/image/upload/f_auto,q_auto/v1/pentonrise/victoriaHallB2';
+const victoriaHallB3 = 'https://res.cloudinary.com/dojayb3ro/image/upload/f_auto,q_auto/v1/pentonrise/victoriaHallB3';
+const victoriaHallB4 = 'https://res.cloudinary.com/dojayb3ro/image/upload/f_auto,q_auto/v1/pentonrise/victoriaHallB4';
 
 export interface Hall {
   id: string;
@@ -39,7 +70,13 @@ export const halls: Hall[] = [
       pentonImage4,
       pentonImage5,
       comfortArinola,
-      'https://lh3.googleusercontent.com/gps-cs-s/APNQkAGtqciw5DxVGoB09WBjLrj7D1Vjjh0x5CRM-b16tLrpCmQ1I4Om9GCil3RZJI1tfUrveVbyswAXbUoTy_XHDjEL2QuOaj2qgpvHgYduXUwBFetifBZhZFZQAv74QZbAnjEFRkaY=s516-k-no'
+      radiantDrapery,
+      comfortArinola1,
+      comfortArinola2,
+      comfortArinola3,
+      comfortArinola4,
+      comfortArinola5,
+      comfortArinola6
     ],
     features: ['Full Air-Conditioned', 'Orange Box Styling', 'Large Capacity', 'Flexible Layouts', 'VAT Inclusive']
   },
@@ -53,7 +90,10 @@ export const halls: Hall[] = [
     images: [
       atinukeHallNew,
       pentonImage1,
-      atinukeHall1
+      atinukeHall1,
+      atinukeHallA,
+      atinukeHallA2,
+      atinukeHallA3
     ],
     features: ['Full Air-Conditioned', 'Purple Box Styling', 'With Extension & Video Link', 'Perfect for Mid-Size', 'VAT Inclusive']
   },
@@ -65,7 +105,11 @@ export const halls: Hall[] = [
     shortDescription: 'A comfortable, fully air-conditioned setting for corporate meetings, bridal showers, and smaller private dinners.',
     image: victoriaHall,
     images: [
-      victoriaHall
+      victoriaHall,
+      victoriaHallB,
+      victoriaHallB2,
+      victoriaHallB3,
+      victoriaHallB4
     ],
     features: ['Full Air-Conditioned', 'Yellow Box Styling', 'Private Atmosphere', 'Meeting Ready', 'VAT Inclusive']
   },
@@ -89,7 +133,8 @@ export const halls: Hall[] = [
     shortDescription: 'An open and welcoming green carpet area with canopy coverage, perfect for cocktail hours, meet-and-greets, and specialized outdoor segments.',
     image: greenCarpet,
     images: [
-      greenCarpet
+      greenCarpet,
+      greenCarpetArea1
     ],
     features: ['Green Box Styling', 'Premium Canopies', 'Open Air Feel', 'Standing Events welcome', 'VAT Inclusive']
   },
@@ -101,7 +146,8 @@ export const halls: Hall[] = [
     shortDescription: 'A cozy, premium covered open carpet area ideal for smaller gatherings, intimate garden parties, family events, or brand activations.',
     image: greenCarpet,
     images: [
-      greenCarpet
+      greenCarpet,
+      greenCarpetArea1
     ],
     features: ['Green Box Styling', 'Premium Canopies', 'Cosy Layout', 'Perfect for Small Groups', 'VAT Inclusive']
   }
@@ -115,7 +161,7 @@ export interface GalleryItem {
 
 export const galleryImages: GalleryItem[] = [
   {
-    src: 'https://lh3.googleusercontent.com/gps-cs-s/APNQkAGtqciw5DxVGoB09WBjLrj7D1Vjjh0x5CRM-b16tLrpCmQ1I4Om9GCil3RZJI1tfUrveVbyswAXbUoTy_XHDjEL2QuOaj2qgpvHgYduXUwBFetifBZhZFZQAv74QZbAnjEFRkaY=s516-k-no',
+    src: radiantDrapery,
     category: 'Comfort Arinola Hall',
     caption: 'Comfort Arinola - Radiant Drapery & Golden Spheres'
   },
@@ -180,9 +226,114 @@ export const galleryImages: GalleryItem[] = [
     caption: 'Victoria Hall B - Sophisticated Intimate Banquet'
   },
   {
+    src: victoriaHallB,
+    category: 'Victoria Hall B',
+    caption: 'Victoria Hall B - Luxury Seating & Exquisite Backdrop Setting'
+  },
+  {
     src: comfortArinola,
     category: 'Comfort Arinola Hall',
     caption: 'Comfort Arinola - Playful & Lively Celebration Area'
+  },
+  // Comfort Arinola Hall uploads
+  {
+    src: comfortArinola1,
+    category: 'Comfort Arinola Hall',
+    caption: 'Comfort Arinola Hall - Luxurious Main Banquet Arrangement'
+  },
+  {
+    src: comfortArinola2,
+    category: 'Comfort Arinola Hall',
+    caption: 'Comfort Arinola Hall - Exquisite Stage Design Close-up'
+  },
+  {
+    src: comfortArinola3,
+    category: 'Comfort Arinola Hall',
+    caption: 'Comfort Arinola Hall - Vibrant Decor details & Overhead Lighting'
+  },
+  {
+    src: comfortArinola4,
+    category: 'Comfort Arinola Hall',
+    caption: 'Comfort Arinola Hall - Radiant Ambiance & Social Lounge'
+  },
+  {
+    src: comfortArinola5,
+    category: 'Comfort Arinola Hall',
+    caption: 'Comfort Arinola Hall - Ornate Draperies & Premium Floral Settings'
+  },
+  {
+    src: comfortArinola6,
+    category: 'Comfort Arinola Hall',
+    caption: 'Comfort Arinola Hall - Spectacular Stage Setup & VIP Backdrop'
+  },
+  // Atinuke Hall uploads
+  {
+    src: atinukeHallA,
+    category: 'Atinuke Hall',
+    caption: 'Atinuke Hall - Rich Ceremony Seating & Lighting Aesthetics'
+  },
+  {
+    src: atinukeHallA2,
+    category: 'Atinuke Hall',
+    caption: 'Atinuke Hall - Professional Conference & Stage Backdrop Setup'
+  },
+  {
+    src: atinukeHallA3,
+    category: 'Atinuke Hall',
+    caption: 'Atinuke Hall - Sparkling Banquet Layout'
+  },
+  // Green Carpet Area
+  {
+    src: greenCarpetArea1,
+    category: 'Green Carpet Area',
+    caption: 'Green Carpet Area - Welcoming Canopy Entrance Setup'
+  },
+  // Victoria Hall B uploads
+  {
+    src: victoriaHallB2,
+    category: 'Victoria Hall B',
+    caption: 'Victoria Hall B - Sophisticated Royalty Banquet Seating'
+  },
+  {
+    src: victoriaHallB3,
+    category: 'Victoria Hall B',
+    caption: 'Victoria Hall B - Charming Yellow Box Uplighting & Pillars'
+  },
+  {
+    src: victoriaHallB4,
+    category: 'Victoria Hall B',
+    caption: 'Victoria Hall B - Intimate Social Celebration Setup'
+  },
+  // Exterior & Parking lot uploads
+  {
+    src: outsideView,
+    category: 'Exterior & Parking',
+    caption: 'Pentonrise - Gated Estate Entrance & Venue Frontage'
+  },
+  {
+    src: outsideView2,
+    category: 'Exterior & Parking',
+    caption: 'Pentonrise - Broad Exterior Architecture View under Oyo Sunshine'
+  },
+  {
+    src: parkingLotExtended,
+    category: 'Exterior & Parking',
+    caption: 'Pentonrise - Spacious Secondary Parking Security Zone'
+  },
+  {
+    src: parkingLotMerged,
+    category: 'Exterior & Parking',
+    caption: 'Pentonrise - Paved Two-Way Driveways & Expansive Grounds'
+  },
+  {
+    src: parkingLotJpeg,
+    category: 'Exterior & Parking',
+    caption: 'Pentonrise - Vast Main Parking Facility with Modern Layout'
+  },
+  {
+    src: parkingLotJpg,
+    category: 'Exterior & Parking',
+    caption: 'Pentonrise - Clean Perimeter Fencing & Well-Lit Security Walks'
   }
 ];
 
