@@ -256,6 +256,77 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Training and Corporate Education Centre Section */}
+      <section className="py-16 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid md:grid-cols-2 gap-12 items-center">
+            <motion.div
+              initial={{ opacity: 0, x: -30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              className="relative order-2 md:order-1"
+            >
+              <img 
+                src="https://images.unsplash.com/photo-1524178232363-1fb2b075b655?w=800&auto=format&fit=crop&q=80" 
+                alt="Professional Seminar and Corporate Training Presentation Space" 
+                className="w-full h-80 md:h-[350px] object-cover rounded-2xl shadow-lg border border-gray-100"
+                referrerPolicy="no-referrer"
+              />
+              <div className="absolute top-4 left-4 bg-burgundy text-white text-xs font-mono font-bold tracking-wider px-3 py-1.5 rounded-full uppercase shadow-md">
+                Learning & Development
+              </div>
+            </motion.div>
+            <motion.div
+              initial={{ opacity: 0, x: 30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              className="space-y-6 order-1 md:order-2"
+            >
+              <span className="text-gold font-bold tracking-[0.2em] uppercase text-sm block">Corporate Hub</span>
+              <h2 className="text-4xl font-serif font-bold text-burgundy mb-4">World-Class Training Center & Lecture Facilities</h2>
+              <p className="text-text-gray leading-relaxed text-lg">
+                Pentonrise Event Center is fully equipped to serve as a flagship venue for technical workshops, academic training, executive seminars, and leadership bootcamps. Our climate-controlled halls, flexible seating formats, high-fidelity wireless video routing links, and tranquil surroundings foster an outstanding, distraction-free environment for focus and skill building.
+              </p>
+              <div className="grid grid-cols-2 gap-4 pt-2">
+                <div className="flex gap-2.5 items-start">
+                  <CheckCircle2 size={18} className="text-gold shrink-0 mt-0.5" />
+                  <div>
+                    <h4 className="font-bold text-slate-800 text-sm">Flexible Layouts</h4>
+                    <p className="text-xs text-text-gray mt-0.5">Theater, classroom, or collaborative setups.</p>
+                  </div>
+                </div>
+                <div className="flex gap-2.5 items-start">
+                  <CheckCircle2 size={18} className="text-gold shrink-0 mt-0.5" />
+                  <div>
+                    <h4 className="font-bold text-slate-800 text-sm">Modern Audiovisuals</h4>
+                    <p className="text-xs text-text-gray mt-0.5">High-res screens and stable multi-hall video feeds.</p>
+                  </div>
+                </div>
+                <div className="flex gap-2.5 items-start">
+                  <CheckCircle2 size={18} className="text-gold shrink-0 mt-0.5" />
+                  <div>
+                    <h4 className="font-bold text-slate-800 text-sm">Catering & Coffee</h4>
+                    <p className="text-xs text-text-gray mt-0.5">Bespoke meal plans & continuous tea cycles.</p>
+                  </div>
+                </div>
+                <div className="flex gap-2.5 items-start">
+                  <CheckCircle2 size={18} className="text-gold shrink-0 mt-0.5" />
+                  <div>
+                    <h4 className="font-bold text-slate-800 text-sm">Executive Privacy</h4>
+                    <p className="text-xs text-text-gray mt-0.5">With dedicated changing rooms & secure parameters.</p>
+                  </div>
+                </div>
+              </div>
+              <div className="pt-2">
+                <Link to="/booking" className="btn btn-burgundy inline-flex items-center gap-2">
+                  Plan Your Training Session <ArrowRight size={16} />
+                </Link>
+              </div>
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
       {/* Gaming Lounge Teaser */}
       <section className="py-16 bg-gray-900 border-t-4 border-purple-600">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
