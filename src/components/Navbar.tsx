@@ -27,6 +27,7 @@ export default function Navbar() {
     { name: 'Gaming Lounge', path: '/gaming' },
     { name: 'Go Kart', path: '/go-kart' },
     { name: 'Contact', path: '/contact' },
+    { name: 'Admin', path: '/admin' },
   ];
 
   return (

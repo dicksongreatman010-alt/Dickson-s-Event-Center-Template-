@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { MapPin, Phone, Mail, Instagram, Facebook, Twitter } from 'lucide-react';
+import { MapPin, Phone, Mail, Instagram } from 'lucide-react';
 import Logo from './Logo';
 
 export default function Footer() {
@@ -15,14 +15,23 @@ export default function Footer() {
               Oyo's most prestigious event center
             </p>
             <div className="flex items-center gap-4 pt-2">
-              <a href="#" className="text-white/70 hover:text-gold transition-colors">
+              <a 
+                href="https://www.instagram.com/pentonrise_event_center26?igsh=MTFlYmpxb2c3cmwxaQ==" 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className="text-white/70 hover:text-gold transition-colors"
+                aria-label="Instagram"
+              >
                 <Instagram size={20} />
               </a>
-              <a href="#" className="text-white/70 hover:text-gold transition-colors">
-                <Facebook size={20} />
-              </a>
-              <a href="#" className="text-white/70 hover:text-gold transition-colors">
-                <Twitter size={20} />
+              <a 
+                href="https://tiktok.com/@pentonriseeventce" 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className="opacity-70 hover:opacity-100 transition-opacity"
+                aria-label="TikTok"
+              >
+                <img src="https://cdn.simpleicons.org/tiktok/ffffff" alt="TikTok" className="w-[18px] h-[18px]" />
               </a>
             </div>
           </div>
@@ -77,7 +86,7 @@ export default function Footer() {
               </li>
               <li className="flex items-center gap-3 text-white/70 text-sm">
                 <Mail size={18} className="text-gold shrink-0" />
-                <a href="mailto:pentonrisen@yahoo.com" className="hover:text-white transition-colors">pentonrisen@yahoo.com</a>
+                <a href="mailto:pentonriseeventcenter@gmail.com" className="hover:text-white transition-colors">pentonriseeventcenter@gmail.com</a>
               </li>
             </ul>
           </div>

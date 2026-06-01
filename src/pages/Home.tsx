@@ -102,25 +102,25 @@ export default function Home() {
 
           <div className="relative z-10 max-w-2xl">
             <motion.h1 
-              initial={{ opacity: 0, y: 30 }}
+              initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8 }}
+              transition={{ duration: 1.0, ease: [0.16, 1, 0.3, 1] }}
               className="text-[42px] md:text-5xl font-bold leading-[1.1] mb-4"
             >
               Elegance and Class<br/>In Every Event.
             </motion.h1>
             <motion.p 
-              initial={{ opacity: 0, y: 30 }}
+              initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.2 }}
+              transition={{ duration: 1.0, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
               className="text-[16px] font-light mb-6 opacity-90 max-w-[400px]"
             >
               Oyo's most prestigious event center for weddings, corporate galas, and bespoke private parties.
             </motion.p>
             <motion.div 
-              initial={{ opacity: 0, y: 30 }}
+              initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.4 }}
+              transition={{ duration: 1.0, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
               className="flex flex-wrap gap-3"
             >
               <Link 
@@ -134,6 +134,12 @@ export default function Home() {
                 className="btn bg-transparent border border-white text-white hover:bg-white hover:text-burgundy"
               >
                 Take a Tour
+              </Link>
+              <Link 
+                to="/admin" 
+                className="btn bg-transparent border border-white/30 text-white/70 hover:bg-white/10 hover:text-white"
+              >
+                Admin Dashboard
               </Link>
             </motion.div>
           </div>
@@ -149,10 +155,10 @@ export default function Home() {
             {halls.map((hall, idx) => (
               <motion.div 
                 key={hall.id}
-                initial={{ opacity: 0, scale: 0.95 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true }}
-                transition={{ delay: idx * 0.2 }}
+                initial={{ opacity: 0, y: 20, scale: 0.98 }}
+                whileInView={{ opacity: 1, y: 0, scale: 1 }}
+                viewport={{ once: true, margin: "-50px" }}
+                transition={{ duration: 0.8, delay: idx * 0.15, ease: [0.16, 1, 0.3, 1] }}
                 className="hall-card group"
               >
                 <div className="h-[180px] w-full bg-[#CBD5E0] relative overflow-hidden group/image">
@@ -205,10 +211,10 @@ export default function Home() {
             ].map((feature, idx) => (
               <motion.div 
                 key={idx}
-                initial={{ opacity: 0, y: 20 }}
+                initial={{ opacity: 0, y: 15 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: idx * 0.2 }}
+                viewport={{ once: true, margin: "-50px" }}
+                transition={{ duration: 0.8, delay: idx * 0.15, ease: [0.16, 1, 0.3, 1] }}
                 className="bg-white p-6 rounded-xl border border-[#E2E8F0] shadow-[0_4px_6px_rgba(0,0,0,0.02)]"
               >
                 <div className="w-12 h-12 bg-gold-light/30 rounded-full flex items-center justify-center mb-4 text-gold-dark">
@@ -227,9 +233,10 @@ export default function Home() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <motion.div
-              initial={{ opacity: 0, x: -30 }}
+              initial={{ opacity: 0, x: -15 }}
               whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
+              viewport={{ once: true, margin: "-50px" }}
+              transition={{ duration: 1.0, ease: [0.16, 1, 0.3, 1] }}
             >
               <h2 className="text-3xl font-bold text-burgundy mb-4">Exquisite Food & Bespoke Decor</h2>
               <p className="text-text-gray mb-6 leading-relaxed">
@@ -240,9 +247,10 @@ export default function Home() {
               </Link>
             </motion.div>
             <motion.div
-              initial={{ opacity: 0, x: 30 }}
+              initial={{ opacity: 0, x: 15 }}
               whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
+              viewport={{ once: true, margin: "-50px" }}
+              transition={{ duration: 1.0, ease: [0.16, 1, 0.3, 1] }}
               className="relative"
             >
               <img 
@@ -261,9 +269,10 @@ export default function Home() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <motion.div
-              initial={{ opacity: 0, x: -30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
+              initial={{ opacity: 0, scale: 0.98, filter: "blur(4px)" }}
+              whileInView={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
+              viewport={{ once: true, margin: "-50px" }}
+              transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
               className="relative order-2 md:order-1"
             >
               <img 
@@ -277,9 +286,10 @@ export default function Home() {
               </div>
             </motion.div>
             <motion.div
-              initial={{ opacity: 0, x: 30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-50px" }}
+              transition={{ duration: 1.0, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
               className="space-y-6 order-1 md:order-2"
             >
               <span className="text-gold font-bold tracking-[0.2em] uppercase text-sm block">Corporate Hub</span>
@@ -332,9 +342,10 @@ export default function Home() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <motion.div
-              initial={{ opacity: 0, x: -30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
+              initial={{ opacity: 0, scale: 0.98, filter: "blur(4px)" }}
+              whileInView={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
+              viewport={{ once: true, margin: "-50px" }}
+              transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
               className="order-2 md:order-1 relative h-64 md:h-80 rounded-2xl overflow-hidden"
             >
               <img 
@@ -350,9 +361,10 @@ export default function Home() {
             </motion.div>
 
             <motion.div
-              initial={{ opacity: 0, x: 30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
+              initial={{ opacity: 0, y: 15 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-50px" }}
+              transition={{ duration: 1.0, ease: [0.16, 1, 0.3, 1] }}
               className="order-1 md:order-2 space-y-6"
             >
               <span className="text-purple-400 font-bold tracking-[0.2em] uppercase text-sm block">The Nexus Lounge</span>
@@ -373,9 +385,10 @@ export default function Home() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <motion.div
-              initial={{ opacity: 0, x: -30 }}
+              initial={{ opacity: 0, x: -15 }}
               whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
+              viewport={{ once: true, margin: "-50px" }}
+              transition={{ duration: 1.0, ease: [0.16, 1, 0.3, 1] }}
               className="space-y-6"
             >
               <span className="text-cyan-400 font-bold tracking-[0.2em] uppercase text-sm block">Zero Gravity Zone</span>
@@ -389,9 +402,10 @@ export default function Home() {
             </motion.div>
 
             <motion.div
-              initial={{ opacity: 0, x: 30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
+              initial={{ opacity: 0, scale: 0.98, filter: "blur(4px)" }}
+              whileInView={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
+              viewport={{ once: true, margin: "-50px" }}
+              transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
               className="relative h-64 md:h-80 rounded-2xl overflow-hidden border border-cyan-500/20 shadow-[0_0_30px_rgba(34,211,238,0.15)]"
             >
               <img 
@@ -416,9 +430,10 @@ export default function Home() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <motion.div
-              initial={{ opacity: 0, x: -30 }}
+              initial={{ opacity: 0, x: -15 }}
               whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
+              viewport={{ once: true, margin: "-50px" }}
+              transition={{ duration: 1.0, ease: [0.16, 1, 0.3, 1] }}
               className="space-y-6"
             >
               <span className="text-gold font-bold tracking-[0.2em] uppercase text-sm block">Gourmet Dining</span>
@@ -432,9 +447,10 @@ export default function Home() {
             </motion.div>
 
             <motion.div
-              initial={{ opacity: 0, x: 30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
+              initial={{ opacity: 0, scale: 0.98 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true, margin: "-50px" }}
+              transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
               className="grid grid-cols-2 gap-4 relative"
             >
               <img 
@@ -459,9 +475,10 @@ export default function Home() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <motion.div
-              initial={{ opacity: 0, x: -30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
+              initial={{ opacity: 0, scale: 0.98, filter: "blur(4px)" }}
+              whileInView={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
+              viewport={{ once: true, margin: "-50px" }}
+              transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
               className="order-2 md:order-1 relative h-64 md:h-80 rounded-2xl overflow-hidden shadow-[0_0_30px_rgba(220,38,38,0.15)]"
             >
               <img 
@@ -478,9 +495,10 @@ export default function Home() {
             </motion.div>
 
             <motion.div
-              initial={{ opacity: 0, x: 30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
+              initial={{ opacity: 0, y: 15 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-50px" }}
+              transition={{ duration: 1.0, ease: [0.16, 1, 0.3, 1] }}
               className="order-1 md:order-2 space-y-6"
             >
               <span className="text-gray-400 font-bold tracking-[0.2em] uppercase text-sm block">Thrill Seekers</span>
@@ -526,10 +544,10 @@ export default function Home() {
             ].map((testimonial, idx) => (
               <motion.div 
                 key={idx}
-                initial={{ opacity: 0, y: 20 }}
+                initial={{ opacity: 0, y: 15 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: idx * 0.2 }}
+                viewport={{ once: true, margin: "-50px" }}
+                transition={{ duration: 0.8, delay: idx * 0.15, ease: [0.16, 1, 0.3, 1] }}
                 className="bg-burgundy p-6 rounded-xl border border-burgundy-light text-white"
               >
                 <div className="flex gap-1 text-gold mb-4">

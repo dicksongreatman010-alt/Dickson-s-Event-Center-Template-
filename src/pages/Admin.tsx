@@ -11,7 +11,6 @@ export default function Admin() {
   const [authLoading, setAuthLoading] = useState(true);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [passCode, setPassCode] = useState('');
   const [authError, setAuthError] = useState('');
   const [authSuccess, setAuthSuccess] = useState('');
 
@@ -46,13 +45,6 @@ export default function Admin() {
     setIsLoading(true);
     
     if (isSignUpMode) {
-      const expectedPasscode = import.meta.env.VITE_ADMIN_PASSCODE || 'admin123';
-      if (passCode !== expectedPasscode) {
-        setAuthError('Invalid admin pass code. (Hint: default is ' + expectedPasscode + ')');
-        setIsLoading(false);
-        return;
-      }
-
       const { data, error } = await supabase.auth.signUp({
         email,
         password,
@@ -62,7 +54,6 @@ export default function Admin() {
       } else {
         setAuthSuccess("Sign up successful! You can now log in.");
         setIsSignUpMode(false);
-        setPassCode('');
       }
     } else {
       const { error } = await supabase.auth.signInWithPassword({
@@ -247,21 +238,6 @@ export default function Admin() {
                 placeholder="••••••••"
               />
             </div>
-            
-            {isSignUpMode && (
-              <div>
-                <label htmlFor="passCode" className="block text-sm font-medium text-gray-700 mb-1">Admin Pass Code</label>
-                <input
-                  id="passCode"
-                  type="password"
-                  value={passCode}
-                  onChange={(e) => setPassCode(e.target.value)}
-                  required={isSignUpMode}
-                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-gold focus:border-gold outline-none"
-                  placeholder="Enter secret code"
-                />
-              </div>
-            )}
             
             <button
               type="submit"
